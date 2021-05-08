@@ -100,3 +100,9 @@ string decodeString(string s) {
             else
                 return maxPQ.top() * 1.0;
         }
+	
+	
+	//23 merge k sort list
+	will be doing after linked class
+	//632
+	will have to do
