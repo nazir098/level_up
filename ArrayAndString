@@ -20,3 +20,7 @@ void rotateByK(vector<int> &arr, int r)
     reverse(arr, n - r, n - 1);
     reverse(arr, 0, n - r - 1);
 }
+
+ Q. segrigate negative and positive no.
+ -> it can be done using two pointers one at initial point and one at final pooint. but this is not a genreal method
+ ->thatswhy we will use 
