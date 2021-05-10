@@ -100,3 +100,30 @@ int max_sum(int A[],int N)
 return maxval;
 }
 
+
+//11 container with most water
+// it is diff from trap water proble in the sense that while calculating area we are neglecting all the b/w members
+// assuming such as they are not present but in case of stack prblm the height of the building was factor
+  int maxArea(vector<int>& height) {
+        
+        int n=height.size();
+        int left=0,right=n-1;//this is max range 
+	  //after each iteration the range will be shrinking in the search of higher no.
+        int res=0;
+        while(left<right)
+        {
+            int width=right-left;
+            int area;
+            if(height[left]< height[right])
+            {
+                
+               area= width* min(height[left++],height[right]);
+            }
+            else
+            {
+                  area= width* min(height[left],height[right--]);
+            }
+            res=max(res,area);
+        }
+        return res;
+    }
