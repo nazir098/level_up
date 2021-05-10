@@ -33,7 +33,7 @@ void rotateByK(vector<int> &arr, int r)
         	cout<<A.size()<<" ";
             if(A[pi]<0)
                 {
-				         swap(A[++ni],A[pi]);
+	           swap(A[++ni],A[pi]);
 			
                 }
           pi++;
@@ -43,3 +43,60 @@ void rotateByK(vector<int> &arr, int r)
        
         return A;
     }
+
+void segregateZeroOne(vector<int> &arr)
+{
+	int zp=-1,op=0,n=arr.size();
+	while(op<n)
+	{
+		if(arr[op]==0)
+			swap(arr[++zp],arr[op]);
+		op++;
+	}
+}
+
+
+    vector<int> segregateZeroOnetwo(vector<int> &arr)
+{
+	int zp=-1,op=0,n=arr.size(),tw=n;
+	while(op<tw)
+	{
+		if(arr[op]==0)
+		{
+			swap(arr[++zp],arr[op++]);// op++ is tricky here
+			//divide into four regions 000 1111 012010 2222 using 3 pointers i.e zero pointer(zp)
+			                             ^    ^        ^
+			//whenever we are getting zero than swapping is only occouring with 1 so we must inc op as it will necessarily be 1				     
+		}
+		else if(arr[op]==2)
+		{
+		 swap(arr[--tw],arr[op]);// we dont know what comes after swapping like it could be 0/1/2 as coming from undefined region so we need to check again
+		}
+		else	
+		op++;
+	}
+	return arr;
+}
+
+int max_sum(int A[],int N)
+{int res=0,sum=0,maxval=0;
+
+ for(int i=0;i<N;i++)
+{
+    sum+=A[i];//14
+    res+=A[i]*i;//11
+}
+
+ for(int i=0;i<N;i++)
+{ 
+    int isum=res-sum + (N*A[i]);//this formula comes by taking example of arr{a, b, c, d}=>0a+ 1b+ 2c +3d so think how it can be converted in 0b+ 1c +2d +3a 
+	 
+	 //isum: result of each summation
+	 //res: sum of previous array
+
+    maxval=max(maxval ,max(isum,res));
+    res=isum;
+}
+return maxval;
+}
+
