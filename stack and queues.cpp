@@ -1,6 +1,6 @@
 //394
 string decodeString(string s) {
-      /*  stack<string>sstk;
+        stack<string>sstk;
 	stack<int>nstk;
 	string res="";
 	int num=0;
