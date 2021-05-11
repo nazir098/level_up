@@ -127,3 +127,42 @@ return maxval;
         }
         return res;
     }
+
+//Q. finding kth smallest element in average O(n) time using quickselect
+void swap(int *a,int *b)
+{
+    int t=*a;
+    *a=*b;
+    *b=t;
+}
+int findpivot(int arr[],int l,int r)
+{
+    int piv=r;
+    int itr=r-1;
+    while(itr>=l)
+    {
+        if(arr[piv]<arr[itr])
+        {
+            swap(&arr[itr],&arr[piv-1]);
+            swap(&arr[piv],&arr[piv-1]);
+            piv--;
+        }
+        itr--;
+    }
+    return piv;
+}
+int kthSmallest(int arr[], int l, int r, int k)
+    {
+        //k=k-1;
+     
+        int piv=findpivot(arr,l,r);
+           
+        if(k-1==piv)
+        return arr[k-1];
+        
+        else if(piv>k)
+        return kthSmallest(arr,l,piv-1,k);
+        else
+        return kthSmallest(arr,piv+1,r,k);
+        
+        }
