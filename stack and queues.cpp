@@ -106,3 +106,64 @@ string decodeString(string s) {
 	will be doing after linked class
 	//632
 	will have to do
+//895
+//sir has used pair we can use vector also and write own comp class
+//another method is using frquency as index and on that index make a stack
+class FreqStack
+{
+private:
+    class pair
+    {
+    public:
+        int val = 0;
+        int freq = 0;
+        int idx = 0;
+
+        pair(int val, int freq, int idx)
+        {
+            this->val = val;
+            this->freq = freq;
+            this->idx = idx;
+        }
+    };
+
+    class comp
+    {
+    public:
+        bool operator()(const pair &a, const pair &b) const
+        {
+            if (a.freq == b.freq)
+                return b.idx > a.idx;
+            return b.freq > a.freq;
+        }
+    };
+
+    unordered_map<int, int> freqMap;
+    priority_queue<pair, vector<pair>, comp> pq;
+    int idx = 0;
+
+public:
+    FreqStack()
+    {
+    }
+
+    void push(int val)
+    { // Log(n)
+        freqMap[val]++;
+        pq.push(pair(val, freqMap[val], idx++));
+    }
+
+    int pop()
+    { // Log(n)
+        pair p = pq.top();
+        pq.pop();
+        freqMap[p.val]--;
+        if (freqMap[p.val] == 0)
+            freqMap.erase(p.val);
+
+        return p.val;
+    }
+};		
+
+
+		
