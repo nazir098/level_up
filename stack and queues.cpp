@@ -133,8 +133,8 @@ private:
         bool operator()(const pair &a, const pair &b) const
         {
             if (a.freq == b.freq)
-                return b.idx > a.idx;
-            return b.freq > a.freq;
+                return b.idx < a.idx;//max heap
+            return b.freq< a.freq;//max heap
         }
     };
 
@@ -165,5 +165,53 @@ public:
     }
 };		
 
-
+//Infix to Postfix
+ int prec(char c)
+        {
+            if(c=='+'||c=='-')
+            return 1;
+            else if(c=='*'||c=='/')
+            return 2;
+            else if(c=='^')
+            return 3;
+            else 
+            return 0;
+        }
+    string infixToPostfix(string s)
+    {
+        
+        stack<char>st;
+        string str ="";
+        for(int i=0;i<s.size();i++)
+        {
+            if((s[i]>='a'&&s[i]<='z')||(s[i]>='A' && s[i]<='Z'))
+            str+=s[i];
+            else if(s[i]=='(')
+            st.push(s[i]);
+            else if(st.size()!=0&&s[i]==')')
+            {
+                while(st.size()!=0&&st.top()!='(')
+                {str+=st.top();
+                
+                    st.pop();
+                }
+                
+                st.pop();
+            }
+            
+            else if(s[i]=='+'||s[i]=='-'||s[i]=='*'||s[i]=='/'||s[i]=='^')
+            {
+              while(st.size()!=0&&prec(s[i])<=prec(st.top()))
+                    {str+=st.top();;st.pop();}
+                    st.push(s[i]);
+                
+            }
+        }
+        
+        while(st.size()!=0)
+        {
+           str+=st.top();
+            st.pop();
+        }
+       
 		
