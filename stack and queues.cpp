@@ -47,7 +47,7 @@ string decodeString(string s) {
 	return res;
     }
     
-    
+  /////////////////////////////////////////////////////////////////////////////////////////  
     //295 my sln ->always pushing to the left side 1 condn to move from left to right and 1 condn to swap-> expecting result from left side 
     priority_queue<int>maxPQ;
     priority_queue<int,vector<int>,greater<int>>minPQ;
@@ -101,11 +101,12 @@ string decodeString(string s) {
                 return maxPQ.top() * 1.0;
         }
 	
-	
+///////////////////////////////////////////////////////////////////////////	
 	//23 merge k sort list
 	will be doing after linked class
 	//632
 	will have to do
+////////////////////////////////////////////////////////////////////////////		
 //895
 //sir has used pair we can use vector also and write own comp class
 //another method is using frquency as index and on that index make a stack
