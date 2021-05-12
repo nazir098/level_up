@@ -236,12 +236,12 @@ int kthSmallest(vector<vector<int>> &matrix, int k)
     return ans;
 }
 
-
+//////////////////////////////////////////////////////////////////////////////
 //380
 //complexity matters
 class RandomizedSet {
 public:
-    /** Initialize your data structure here. */
+    
     unordered_map<int,int>map;
     vector<int>vec;
     RandomizedSet() {
@@ -249,7 +249,7 @@ public:
         //map[0]=0;
     }
     
-    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+    
     bool insert(int val) {
         if(map.find(val)==map.end())
         {
@@ -260,7 +260,96 @@ public:
             return false;
     }
     
-    /** Removes a value from the set. Returns true if the set contained the specified element. */
+
+    bool remove(int val) {
+        
+        if(map.find(val)!=map.end())
+        {int ind=map[val];
+         int lind=vec.size()-1;
+         
+         vec[ind]=vec[lind];
+         map[vec[ind]]=ind;
+         
+         vec.pop_back();
+         map.erase(val);
+         
+////////////////////////////////////////////////////////////////////////////////////
+//895
+class FreqStack {
+
+public:
+    class comp{
+        public:
+        bool operator()(const vector<int>&a, const vector<int>&b)const
+        { 
+            if(a[0]==b[0])
+                return a[2]<b[2];
+            
+        return a[0]<b[0];
+        }            
+    };
+    
+    priority_queue<vector<int>,vector<vector<int>>,comp>pq;
+    unordered_map<int,int>map;
+    int i=0;
+    FreqStack() {
+        
+    }
+    
+    void push(int val) {
+        map[val]++;
+       
+        pq.push({map[val],val,i++});
+     
+        
+    }
+    
+    int pop() {
+       
+        auto ans=pq.top();
+        pq.pop();
+       
+        int value=ans[1];
+        map[value]--;
+        if(ans[0]==0)
+            map.erase(value);
+        
+        return value;
+    }         
+            return true;
+        }
+            return false;
+    }
+    
+    /** Get a random element from the set. */
+    int getRandom() {
+        int t=(rand()%vec.size());
+      
+        return vec[t];
+    }
+/////////////////////////////////////////////////////////////////////////////
+//380
+//we hve to do everything in O(1)
+class RandomizedSet {
+public:
+   
+    unordered_map<int,int>map;
+    vector<int>vec;
+    RandomizedSet() {
+    }
+    
+
+    bool insert(int val) {
+        if(map.find(val)==map.end())
+        {
+            vec.push_back(val);
+            map[val]=vec.size()-1;
+         return true;
+        }
+            return false;
+    }
+    
+    
     bool remove(int val) {
         
         if(map.find(val)!=map.end())
@@ -279,7 +368,7 @@ public:
             return false;
     }
     
-    /** Get a random element from the set. */
+    
     int getRandom() {
         int t=(rand()%vec.size());
       
