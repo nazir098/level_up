@@ -110,61 +110,7 @@ string decodeString(string s) {
 //895
 //sir has used pair we can use vector also and write own comp class
 //another method is using frquency as index and on that index make a stack
-class FreqStack
-{
-private:
-    class pair
-    {
-    public:
-        int val = 0;
-        int freq = 0;
-        int idx = 0;
-
-        pair(int val, int freq, int idx)
-        {
-            this->val = val;
-            this->freq = freq;
-            this->idx = idx;
-        }
-    };
-
-    class comp
-    {
-    public:
-        bool operator()(const pair &a, const pair &b) const
-        {
-            if (a.freq == b.freq)
-                return b.idx < a.idx;//max heap
-            return b.freq< a.freq;//max heap
-        }
-    };
-
-    unordered_map<int, int> freqMap;
-    priority_queue<pair, vector<pair>, comp> pq;
-    int idx = 0;
-
-public:
-    FreqStack()
-    {
-    }
-
-    void push(int val)
-    { // Log(n)
-        freqMap[val]++;
-        pq.push(pair(val, freqMap[val], idx++));
-    }
-
-    int pop()
-    { // Log(n)
-        pair p = pq.top();
-        pq.pop();
-        freqMap[p.val]--;
-        if (freqMap[p.val] == 0)
-            freqMap.erase(p.val);
-
-        return p.val;
-    }
-};		
+//this question has been moved to hasmap		
 
 //Infix to Postfix
  int prec(char c)
@@ -215,4 +161,70 @@ public:
             st.pop();
         }
        
-		
+/////////////////////////////////////////////////////////////////////
+//227 basic calc 2	 
+//this question is based on infix to postfix diff only here we are evaluting no. at the same time
+//catch is using long to num variable	    
+int eval(int a,int b,char c)
+    {
+        if(c=='+')return a+b;
+        else  if(c=='-')return a-b;  
+        else  if(c=='*')return a*b;  
+        else  if(c=='/')return (a/b);  
+        else return -1;  
+ 
+    }
+    int pre(char c)
+    {
+        if(c=='+'||c=='-')return 1;
+        else if(c=='*'||c=='/')return 2;
+        else 
+            return 0;
+    }
+    int calculate(string s) {
+        long num=0;
+        stack<int>st;
+        stack<int>op;
+        long res=0;
+        for(int i=0;i<s.size();i++)
+        {
+            
+            char ch=s[i];
+            if(ch==' ')continue;
+            if(ch>='0'&&ch<='9')
+            {num=0;
+                while(i<s.size()&&s[i]>='0'&&s[i]<='9')
+                {
+                    num=num*10+s[i]-'0';
+                    i++;
+                }
+                i--;
+                st.push((int)num);
+            }
+            else{
+                
+                  while(op.size()!=0&&pre(ch)<=pre(op.top()))
+                    {cout<<"res"<<res;
+                    int b=st.top();st.pop();
+                    int a=st.top();st.pop();
+                    char c=op.top();op.pop();
+                    res=eval(a,b,c);
+                      
+                    st.push(res);
+                    }
+               
+                  op.push(ch);
+                }
+          
+              
+        }
+          while(op.size()!=0)
+                {
+                    int b=st.top();st.pop();
+                    int a=st.top();st.pop();
+                    char c=op.top();op.pop();
+                    res=eval(a,b,c);
+                    st.push(res);
+                }
+    return st.top();
+    }	    
