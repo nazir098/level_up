@@ -228,3 +228,128 @@ int eval(int a,int b,char c)
                 }
     return st.top();
     }	    
+///////////////////////////////////////////////////////////
+//636 exclusive time function
+ vector<int> breaked(string s)
+    {  vector<int>vec(3,0);
+     int id=0;
+     int  type;
+     int ctime=0;
+     int i=0;
+        while(i<s.size())
+    {
+              
+             while(s[i]!=':')              //loop for getting id
+            {
+                id=id*10+s[i]-'0';
+                i++;
+            }
+            i++;
+            
+            s[i]=='s'?type=0:type=1;      //its starting point or not
+         
+            while(s[i]!=':')i++;          // moving towards current time      
+            
+            i++;
+             while(i<s.size())            //getting current time
+                {
+                    ctime=ctime*10 +s[i]-'0';
+                    i++;
+                }
+        
+    }  
+     vec[0]=id;
+     vec[1]=type;
+     vec[2]=ctime;
+       return vec;     
+            
+    }
+    vector<int> exclusiveTime(int n, vector<string>& logs) {
+        stack<int>st;
+        vector<int>vec(n,0);
+        int ltime=0;
+        for(string el:logs)
+        {
+            auto info=breaked(el);
+            int id=info[0];
+            int ctime=info[2];
+            int type=info[1];
+            
+            if(type==0)
+            {
+                if(!st.empty())
+                {
+                     vec[st.top()]=vec[st.top()]+ctime-ltime;
+                }
+                st.push(id);
+                ltime=ctime;                       //starting point is inclusive
+            }
+            else
+            {
+                vec[id]=vec[id]+ctime-ltime+1;
+                ltime=ctime+1;                     //ending point is exclusive
+                st.pop();
+            }
+        }
+        return vec;
+    }
+//////////////////////////////////////////////////////
+//84 largest rectangle in a histogram
+//in stack for an element the downwarth element is there lower limit and coming smaller no. is their expansion limit
+ int largestRectangleArea(vector<int> &heights)
+{
+    int n = heights.size();
+    stack<int> st;
+    st.push(-1);
+    int maxArea = 0;
+
+    int i = 0;
+    while (i < n)
+    {
+        while (st.top() != -1 && heights[st.top()] >= heights[i])
+        {
+            int idx = st.top();
+            st.pop();
+
+            int h = heights[idx];
+            int w = i - st.top() - 1;
+            maxArea = max(maxArea, h * w);
+        }
+
+        st.push(i++);
+    }
+
+    while (st.top() != -1)
+    {
+        int idx = st.top();
+        st.pop();
+
+        int h = heights[idx];
+        int w = n - st.top() - 1;
+        maxArea = max(maxArea, h * w);
+    }
+
+    return maxArea;
+}
+////////////////////////////////////////////////////////////////
+//85 maximal rectangle
+ int maximalRectangle(vector<vector<char>>& matrix) {
+        int m=matrix.size();
+        if(m==0)return 0;
+        int n=matrix[0].size();
+        vector<int>vec(n,0);
+        int maxval=0;
+        
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(matrix[i][j]=='1')
+                    vec[j]+=1;
+                else
+                    vec[j]=0;
+            }
+            maxval=max(largestRectangleArea(vec),maxval);
+        }
+        return maxval;
+    }	    
