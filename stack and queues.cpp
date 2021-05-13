@@ -353,3 +353,74 @@ int eval(int a,int b,char c)
         }
         return maxval;
     }	    
+//////////////////////////////////////////////////////////////
+//503 NGOR 2
+//traverse upto their last index using % operator push only that index which u have avilable with vector
+ vector<int> nextGreaterElements(vector<int>& nums) {
+        vector<int>vec(nums.size(),-1);
+        stack<int>st;
+        int i=0;
+        while(i<2*nums.size()-1)
+        {
+            while(st.size()!=0&&nums[st.top()]<nums[i%nums.size()])
+            {
+                vec[st.top()]=nums[i%nums.size()];
+                st.pop();
+            }
+           if(i<nums.size()) st.push(i);
+            i++;
+       }
+        
+        return vec;
+    }
+/////////////////////////////////////////////////
+//901
+//chhote wale ko hta do fir push kr do qk agr hme NGOL chahie to pushed element hi ans hoga , ar index ko save krne k liye incoming value k sath associate krte jao
+   stack<vector<int>>st;
+    int day=0;
+    StockSpanner() {
+        st.push({-1,-1});
+            //day,data
+            
+    }
+    
+    int next(int price) {
+        while(st.top()[0]!=-1&&st.top()[1]<=price)
+            st.pop();
+        
+        int span =day-st.top()[0];
+        st.push({day++,price});
+        return span;
+    }
+//////////////////////////////////////////////////////////////////
+//735 astroid collision
+// just make case when will astroid collide 	    
+  vector<int> asteroidCollision(vector<int>& ast) {
+        vector<int>st;
+        for(auto el:ast){
+       if(el>0||st.size()==0)
+       {
+           st.push_back(el);
+           continue;
+            }
+        while(st.size()!=0&&(st.back()>0&&st.back()<-el))
+        {st.pop_back();}
+            
+            if(st.size()==0||st.back()<0&&el<0)
+            {st.push_back(el);}
+           else if(st.size()!=0&&st.back()<-el)
+            {
+                st.pop_back();
+                st.push_back(el);
+               //cout<<"das";
+                }
+              else if(st.size()!=0&&st.back()==-el)
+              st.pop_back();
+            //st.push_back()
+          
+
+                
+        }
+            
+         return st; 
+        }	    
