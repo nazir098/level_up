@@ -175,3 +175,10 @@ From Rajneesh Kumar to Everyone:  09:24 AM
 https://www.geeksforgeeks.org/smallest-window-contains-characters-string/
 340
 1456
+//////////
+1. https://www.geeksforgeeks.org/smallest-window-contains-characters-string/
+2. 340
+3. 1456
+4. 992
+5. 1248
+6. https://practice.geeksforgeeks.org/problems/longest-k-unique-characters-substring0853/1
