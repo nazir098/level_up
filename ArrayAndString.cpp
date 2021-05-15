@@ -166,3 +166,12 @@ int kthSmallest(int arr[], int l, int r, int k)
         return kthSmallest(arr,piv+1,r,k);
         
         }
+https://www.geeksforgeeks.org/smallest-window-contains-characters-string/
+https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/
+1456
+From pprasoon to Everyone:  09:20 AM
+https://www.lintcode.com/en/old/problem/longest-substring-with-at-most-k-distinct-characters/
+From Rajneesh Kumar to Everyone:  09:24 AM
+https://www.geeksforgeeks.org/smallest-window-contains-characters-string/
+340
+1456
