@@ -20,11 +20,12 @@ void rotateByK(vector<int> &arr, int r)
     reverse(arr, n - r, n - 1);
     reverse(arr, 0, n - r - 1);
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////
 /* Q. segrigate negative and positive no.
  -> it can be done using two pointers one at initial point and one at final pooint. but this is not a genreal method
  ->thatswhy we will use quick sort approach
  */
+
  vector<int> Segrigate(vector<int>& A)
  {
         int ni=-1,pi=0,n=A.size(); 
@@ -43,7 +44,7 @@ void rotateByK(vector<int> &arr, int r)
        
         return A;
     }
-
+//////////////////////////////////////////////////////////
 void segregateZeroOne(vector<int> &arr)
 {
 	int zp=-1,op=0,n=arr.size();
@@ -54,7 +55,7 @@ void segregateZeroOne(vector<int> &arr)
 		op++;
 	}
 }
-
+///////////////////////////////////////////////////////////////
 
     vector<int> segregateZeroOnetwo(vector<int> &arr)
 {
@@ -100,7 +101,7 @@ int max_sum(int A[],int N)
 return maxval;
 }
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //11 container with most water
 // it is diff from trap water proble in the sense that while calculating area we are neglecting all the b/w members
 // assuming such as they are not present but in case of stack prblm the height of the building was factor
@@ -127,7 +128,7 @@ return maxval;
         }
         return res;
     }
-
+/////////////////////////////////////////////////////////////////////////////////////
 //Q. finding kth smallest element in average O(n) time using quickselect
 void swap(int *a,int *b)
 {
@@ -166,12 +167,89 @@ int kthSmallest(int arr[], int l, int r, int k)
         return kthSmallest(arr,piv+1,r,k);
         
         }
+/////////////////////////////////////////////////////////////////////////
+//Q.3 Longest substring 
+//using two pointer method in just 2 pass
+//make one variable as indicator if it voilates the condition then shrink the length
+//for example cnt here
+int lengthOfLongestSubstring(string s) {
+        int si=0,ei=0,ans=0,cnt=0;
+        int freq[128]={0};
+        if(s.size()<1)return s.size();
+        while(ei<s.size())
+        {
+       
+            if(freq[s[ei++]]++>0) cnt++;
+               
+            while(cnt>0)
+            {
+                if(freq[s[si++]]-->1)cnt--;
+            
+            }
+             ans=max(ans,ei-si);
+        }
+           return ans;
+    }
+////////////////////////////////////////////////////////////////////////////
+//comprihensible version of above code
+int lengthOfLongestSubstring(string s) {
+        int si=0,ei=0,ans=0,cnt=0;
+        int freq[128]={0};
+        if(s.size()<1)return s.size();
+        while(ei<s.size())
+        {
+       
+            if(freq[s[ei]]==1) cnt++;
+              
+            freq[s[ei]]++;
+            ei++;
+            
+            while(cnt>0)
+            {
+                if(freq[s[si]]==2)cnt--;
+                
+                freq[s[si]]--;
+                si++;
+            
+            }
+             ans=max(ans,ei-si);
+        }
+           return ans;
+    }
+////////////////////////////////////////////////////////////
+//https://www.lintcode.com/problem/longest-substring-with-at-most-two-distinct-characters/description
+//Q. Longest substring with atmost 2 distinct charachter  
+ int lengthOfLongestSubstring(string s) {
+        int si=0,ei=0,ans=0,cnt=0;
+        int freq[128]={0};
+        if(s.size()<1)return s.size();
+        while(ei<s.size())
+        {
+       
+            if(freq[s[ei]]==1) cnt++;
+              
+            freq[s[ei]]++;
+            ei++;
+            
+            while(cnt>0)
+            {
+                if(freq[s[si]]==2)cnt--;
+                
+                freq[s[si]]--;
+                si++;
+            
+            }
+             ans=max(ans,ei-si);
+        }
+           return ans;
+    }
+/////////////////////////////////////////////////////
 https://www.geeksforgeeks.org/smallest-window-contains-characters-string/
 https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/
 1456
-From pprasoon to Everyone:  09:20 AM
+
 https://www.lintcode.com/en/old/problem/longest-substring-with-at-most-k-distinct-characters/
-From Rajneesh Kumar to Everyone:  09:24 AM
+
 https://www.geeksforgeeks.org/smallest-window-contains-characters-string/
 340
 1456
