@@ -244,6 +244,55 @@ int lengthOfLongestSubstring(string s) {
            return ans;
     }
 /////////////////////////////////////////////////////
+//Q. 76
+//substr() parameters are 1.starting index(included) 2. length of required string
+//EX: string s1 = "Geeks";
+//string r = s1.substr(3, 2);
+//cout << "String is: " << r;
+//O/P: ks
+string minWindow(string s, string t) {
+        int sn=s.length();
+        int tn=t.length();
+        if(sn<tn)
+        {return "";}
+        int freq[128]={0};
+        int si=0;
+        int ei=0;
+        for(char ch:t)
+        {
+            freq[ch]--;
+            
+        }
+        int count=tn;
+        int len=INT_MAX;
+        int gsi=0;
+        
+        while(ei<sn)
+        {
+            if(freq[s[ei++]]++<0)
+            {count--;}
+           
+            
+            while(count==0)
+            {
+                if(ei-si<len)
+                {   gsi=si;
+                    len=ei-si;
+                    
+                }
+                
+                if(freq[s[si++]]--==0)
+                {
+                    count++;
+                }
+                
+            }
+            
+        }
+      
+        return len==(INT_MAX)?"":s.substr(gsi,len);
+    }
+////////////////////////////////////////////////////////////////////////
 https://www.geeksforgeeks.org/smallest-window-contains-characters-string/
 https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/
 1456
