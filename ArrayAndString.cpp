@@ -335,9 +335,9 @@ string minWindow(string s, string t) {
             {count--;}
            
             
-            while(count==0)
+            while(count==0)  
             {
-                if(ei-si<len)
+                if(ei-si<len)        //why inside loop? coz min is req and we cant find min at all iteration, ans would be wrong
                 {   gsi=si;
                     len=ei-si;
                     
@@ -354,14 +354,107 @@ string minWindow(string s, string t) {
       
         return len==(INT_MAX)?"":s.substr(gsi,len);
     }
+///////////////////////////////////////////////////////////////////////
+// Q. https://www.geeksforgeeks.org/smallest-window-contains-characters-string/
+//smallest window of itself return a substring
+string findSubString(string str)
+    {
+        int fre[128]={0};
+        int si=0,ei=0,len=INT_MAX,cnt=0;
+        int gsi=0;
+        for(int i=0;i<str.size();i++)
+        {
+            if(fre[str[i]]==0){
+                fre[str[i]]=1;
+                cnt++;
+            }
+        }
+        while(ei<str.size())
+        {
+            if(fre[str[ei++]]-->0)
+            cnt--;
+            while(cnt==0)
+            {
+                if(len>ei-si)
+                {
+                    len=ei-si;
+                    gsi=si;
+                }
+                if(fre[str[si++]]++==0)
+                cnt++;
+            }
+            
+        }
+        return len==INT_MAX?"":str.substr(gsi,len);
+    }
 ////////////////////////////////////////////////////////////////////////
-https://www.geeksforgeeks.org/smallest-window-contains-characters-string/
-https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/
-1456
+//Q. 340. Longest Substring with At Most K Distinct Characters
 
-https://www.lintcode.com/en/old/problem/longest-substring-with-at-most-k-distinct-characters/
+int lengthOfLongestSubstringKDistinct(String s, int k)
+{
+	if(s.size()<=k)return s.size();
+	int ei=0 , si=0, len=0,cnt=0;
+	int fre[128]={0};
+	int n=s.size();
+	
+	while(ei<n)
+	{
+		if(fre[s[ei++]]++==0)
+			cnt++;
+		
+		while(cnt>k)
+		{
+			if(fre[s[si++]]--==1)
+				cnt--;
+		}
+		
+		len=max(len,ei-si);
+	}
+	return len;
+		
+}
+////////////////////////////////////////////////////////////////////////
+//Q.1456. Maximum Number of Vowels in a Substring of Given Length
 
-https://www.geeksforgeeks.org/smallest-window-contains-characters-string/
+bool isvowel(char c)
+    {
+        return (c=='a'||c=='e'||c=='i'||c=='o'||c=='u');
+    }
+    
+    int maxVowels(string s, int k) {
+        if(k==0)return 0;
+        int ei=0,si=0,len=0,vowel=0;
+        while(ei<s.size()){
+        if(isvowel(s[ei++]))
+        {
+            vowel++;
+            
+        }
+        while(ei-si>k)
+        {
+            if(isvowel(s[si++]))
+                vowel--;
+        }
+        len=max(len,vowel);
+    }
+        return len;
+    }
+////////////////////////////////////////////////////////////////////////
+//Q. Count all subarrays with atMost k Different Integers.
+// It is trickier one coz we are adding not replacing the value of cnt
+
+int atMostKDistinct(vector<int>&arr, int k)
+{
+	int ei=0, si=0, cnt=0, n=arr.size();
+	
+	while(ei<n)
+	{
+		if(
+	}
+}
+
+////////////////////////////////////////////////////////////////////////
+
 340
 1456
 //////////
