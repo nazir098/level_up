@@ -388,32 +388,6 @@ string findSubString(string str)
         return len==INT_MAX?"":str.substr(gsi,len);
     }
 ////////////////////////////////////////////////////////////////////////
-//Q. 340. Longest Substring with At Most K Distinct Characters
-
-int lengthOfLongestSubstringKDistinct(String s, int k)
-{
-	if(s.size()<=k)return s.size();
-	int ei=0 , si=0, len=0,cnt=0;
-	int fre[128]={0};
-	int n=s.size();
-	
-	while(ei<n)
-	{
-		if(fre[s[ei++]]++==0)
-			cnt++;
-		
-		while(cnt>k)
-		{
-			if(fre[s[si++]]--==1)
-				cnt--;
-		}
-		
-		len=max(len,ei-si);
-	}
-	return len;
-		
-}
-////////////////////////////////////////////////////////////////////////
 //Q.1456. Maximum Number of Vowels in a Substring of Given Length
 
 bool isvowel(char c)
@@ -440,18 +414,62 @@ bool isvowel(char c)
         return len;
     }
 ////////////////////////////////////////////////////////////////////////
-//Q. Count all subarrays with atMost k Different Integers.
-// It is trickier one coz we are adding not replacing the value of cnt
+//Q. 340. Longest Substring with At Most K Distinct Characters
 
-int atMostKDistinct(vector<int>&arr, int k)
+int lengthOfLongestSubstringKDistinct(String s, int k)
 {
-	int ei=0, si=0, cnt=0, n=arr.size();
+	if(s.size()<=k)return s.size();
+	int ei=0 , si=0, len=0,cnt=0;
+	int fre[128]={0};
+	int n=s.size();
 	
 	while(ei<n)
 	{
-		if(
+		if(fre[s[ei++]]++==0)
+			cnt++;
+		
+		while(cnt>k)
+		{
+			if(fre[s[si++]]--==1)
+				cnt--;
+		}
+		
+		len=max(len,ei-si);
 	}
+	return len;
+		
 }
+
+////////////////////////////////////////////////////////////////////////
+//Q. Count all subarrays with atMost k Different Integers.
+// It is trickier one coz we are adding not replacing the value of cnt
+// one line change from above code
+int CntAtMostKDistinct(vector<int>&arr, int k)
+{
+	int ei=0, si=0, cnt=0, n=arr.size();
+	unordered_map<int , int>fre;
+	
+	while(ei<n)
+	{
+		                          /*if(fre[s[ei++]]++==0) it works also fine 
+			                            cnt++;*/
+		fre[s[ei++]]++;
+		
+		while(fre.size()>k)
+		{
+			if(fre[s[si++]]--==1)
+				fre.erase(si-1);//mind si-1
+		}
+		
+		len=len +(ei-si);  //only here chnges from above code
+	}
+	return len;
+}
+
+///////////////////////////////////////////////////////////////////////
+//Q. Count of subarrays having exactly K distinct elements
+// why we cant find directly k distinct element ??why atmost(K)-atmost(k-1)??
+
 
 ////////////////////////////////////////////////////////////////////////
 
