@@ -444,9 +444,9 @@ int lengthOfLongestSubstringKDistinct(String s, int k)
 //Q. Count all subarrays with atMost k Different Integers.
 // It is trickier one coz we are adding not replacing the value of cnt
 // one line change from above code
-int CntAtMostKDistinct(vector<int>&arr, int k)
+int CntAtMostKDistinct(vector<int>&s, int k)
 {
-	int ei=0, si=0, cnt=0, n=arr.size();
+	int ei=0, si=0, cnt=0, n=s.size();
 	unordered_map<int , int>fre;
 	
 	while(ei<n)
@@ -458,19 +458,102 @@ int CntAtMostKDistinct(vector<int>&arr, int k)
 		while(fre.size()>k)
 		{
 			if(fre[s[si++]]--==1)
-				fre.erase(si-1);//mind si-1
+				fre.erase(si-1);  //mind it (si-1)
 		}
+		
+	//n(n+1)/2 =1+2+3+4+5	
 		
 		len=len +(ei-si);  //only here chnges from above code
 	}
 	return len;
 }
 
+//////////////////////////////////////////////////////////////////////
+Q.904. Fruit Into Baskets
+//length of longest substring having exact 2 distinct elements 
+//Input: [0,1,2,2]
+//Output: 3
+//Explanation: We can collect [1,2,2].
+//If we started at the first tree, we would only collect [0, 1].
+
+int totalFruit(vector<int>& tree)
+  {
+        int n=tree.size();
+        if(n<=2)return n;
+        
+        int si=0,ei=0,cnt=0,ans=0;
+        unordered_map<int ,int>fre;
+        
+        while(ei<n)
+        {
+            fre[tree[ei++]]++;
+            
+            while(fre.size()>2)
+            {
+                if(fre[tree[si++]]--==1)
+                    fre.erase(tree[si-1]);
+            }
+            ans=max(ans,ei-si);
+        }
+        return ans;
+    }
 
 ///////////////////////////////////////////////////////////////////////
-//Q. Count of subarrays having exactly K distinct elements
 // why we cant find directly k distinct element ??why atmost(K)-atmost(k-1)??
+//we know that n no. will have n(n+1)/2 substring but there is condition applied that you can select only k distinct/exact  elements
+//For getting soln we can make a window which have only k distinct/exact elements 
+//how you are adding the count is subjected to the condition in given question
 
+//Q. Count of subarrays having exactly K distinct elements
+//make a window that have exact k distinct ele in mean time if some elements are repeating you can drop it (with storing cnt of drop)
+//then no. of dropped elements tells current window can have that much extra combination of sub string
+//eg : 1 1  2 1
+            ^ ^this is our window then CntofDrop=2 => CntofDrop + 1(window itself)
+//this CntofDrop will only reset when there is break in string means Nodistinct>k
+
+int CntExactKDistinct(vector<int>&s, int k)
+{
+	int ei=0, si=0, cnt=0, n=s.size(),dropped=0,ans=0;
+	unordered_map<int , int>fre;
+	
+	while(ei<n)
+	{
+		                        
+		fre[s[ei++]]++;
+		
+		if(fre.size()>k)   //it has having only distict character like =>1 2 3 for k=2 not =>1 1 2 3
+		{
+			if(fre[s[si++]]--==1);//it will always be true
+				fre.erase(s[si-1]);
+			dropped=0;
+	         }
+		
+                  while(fre[s[si]]>1)
+		{
+		    fre[s[si++]]--;
+		    dropped++;
+		 
+		}
+		if(fre.size()==k)
+			ans+=dropped+1;
+	}
+	return ans;
+}
+
+
+////////////////////////////////////////////////////////////////////////
+//Q.930. Subarrays With Sum==target
+// Input: nums = [1,0,1,0,1], goal = 2
+// Output: 4
+// Explanation: 
+// The 4 subarrays are bolded below:
+// [1,0,1,0,1]
+// [1,0,1,0,1]
+// [1,0,1,0,1]
+// [1,0,1,0,1]
+// brute force approach is to find all sum substring and compare with goal
+//another approach is atmostsum(target-1)-atmostsum(target)
+// another approach is sliding window as used in exact distinct element
 
 ////////////////////////////////////////////////////////////////////////
 
