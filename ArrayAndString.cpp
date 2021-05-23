@@ -465,6 +465,7 @@ int CntAtMostKDistinct(vector<int>&arr, int k)
 	}
 	return len;
 }
+![IMG20200708101522](https://user-images.githubusercontent.com/82276414/119268813-37691980-bc12-11eb-9a74-0ba572142335.jpg)
 
 ///////////////////////////////////////////////////////////////////////
 //Q. Count of subarrays having exactly K distinct elements
