@@ -534,12 +534,73 @@ int CntExactKDistinct(vector<int>&s, int k)
 		    dropped++;
 		 
 		}
-		if(fre.size()==k)
-			ans+=dropped+1;
+		if(fre.size()==k)  //if our window have k distinct element but it contains more repeated elements then we add always dropped +1 => 1 2 1 1 1
+			ans+=dropped+1;                                                                                                            ^ ^  _____>in this scenario we are adding
 	}
 	return ans;
 }
+///////////////////////////////////////////////////////////////////////
+// 1248. Count Number of Nice Subarrays
+// 1st approach is to use atMostOdd(k)-atMostOdd(k-1)
+// 2nd approach is sliding window for exact distinct
 
+public int atMostOdd(vector<int>&arr, int k)
+{
+        int n = arr.size(), si = 0, ei = 0, count = 0, ans = 0;
+        while (ei < n) {
+            if ((arr[ei++] & 1) != 0)
+                count++;
+
+            while (count > k)
+	    {
+                if ((arr[si++] & 1) != 0)
+                    count--;
+            }
+
+            ans += ei - si;
+        }
+
+        return ans;
+ }
+int numberOfSubarrays(vector<int>& nums, int k) 
+{
+	return atMostOdd(nums,k) - atMostOdd(nums,k-1);
+}
+////////
+int numberOfSubarrays(vector<int>& nums, int k) {
+        int si=0,ei=0,cnt=0,ans=0,dropped=0;
+        
+        
+        while(ei<nums.size())
+        {
+          
+            if(nums[ei++]&1)
+                cnt++;
+            if(cnt>k)  //you can use while loop also but its sure that it will excute only once
+            {
+                 
+                if((nums[si]&1)==0) //you can use while loop also but its sure that it will excute only once
+                    si++;
+                si++;
+                cnt--;                //this block is same when we find atmost k distinct
+                dropped=0;
+            }
+		
+           while((nums[si]&1)==0 and si<ei) //please put bit operation in bracket
+            {
+                si++;
+                dropped++;          //this block, storage of dropped elements
+            }
+            
+            if(cnt==k)
+            { ans+=dropped+1;      //this block is like adding extra repeated elements that can result as a combination of windowed substring
+             
+            }
+            
+        }
+        return ans;
+    }
+////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////
 //Q.930. Subarrays With Sum==target
