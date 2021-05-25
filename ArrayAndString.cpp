@@ -865,5 +865,114 @@ gs=max(cs,gs)
 
 /////////////////////////////////////////////////////////////////////
 //Q.subarray of max sum
+//gives length of subarray
+maxSubarraySum(int arr[], int n)
+{        
+        int gs=-1e9,cs=0;
+        for(int i=0;i<n;i++)
+        {
+	  cs+=arr[i];
+		
+           if(cs<=arr[i])
+	   {cs=arr[i];
+	    csi=i;
+	   }
+                    
+           if(gs<cs)
+	   {gs=cs;
+	    gsi=csi;
+	    gei=i;
+	   }
+	}
+	return gei-gsi+1;
+}
+//////////////////////////////////////////////////////////////////
+1191. K-Concatenation Maximum Sum
+//yet to done
+///////////////////////////////////////////////////////////////////
+// Q.Maximum sum Rectangle
+// https://practice.geeksforgeeks.org/problems/maximum-sum-rectangle2948/1#
+// make a row one ,two and so on then maximum subarray will give such rectangle which has greater sum
+// apne window ko chhota krte jayenge ar ye dekhenge k khi chhota window hmara max to nhi de rha
+
+   int maximumSumRectangle(int R, int C, vector<vector<int>> M)
+    {
+        int ans=-1e6,temp=(int)-1e9;
+        for(int fix=0;fix<R;fix++)
+        {
+            int lsum=(int)-1e9;
+            vector<int>prefixs(C,0);
+            for(int r=fix;r<R;r++)
+            {
+                for(int c=0;c<C;c++)
+                {
+                   
+                        prefixs[c]+=M[r][c];
+                    
+                }
+                 lsum=kadanes(prefixs);
+                 temp=temp>lsum?temp:lsum;
+            }
+           
+            ans=temp>ans?temp:ans;
+        }
+        return ans;
+       
+    }
+////////////////////////////////////////////////////////////////////
+// if we want to print matrix
+//now we are expecting our kadance function to give 3 information {val,si,ei}
+vector<int> kadancesubarray(vector<int> arr)
+{
+	for(int el:arr)
+	{
+		
+	
+	}
+}
+    int maximumSumRectangle_02(int R, int C, int arr[][]) {
+        int n = R, m = C, maxSum = -(int) 1e9;
+        int[] colPrefixSum = new int[m];
+
+        int r1 = 0, c1 = 0, r2 = 0, c2 = 0;
+
+        for (int fixRow = 0; fixRow < n; fixRow++) {
+
+            Arrays.fill(colPrefixSum, 0);
+
+            for (int row = fixRow; row < n; row++) {
+                for (int col = 0; col < m; col++)
+                    colPrefixSum[col] += arr[row][col];
+
+                int[] res = kadanesAlgoGenericSubarray(colPrefixSum);
+                if (res[0] >= maxSum) {
+                    maxSum = res[0];
+                    r1 = fixRow;
+                    c1 = res[1];
+                    r2 = row;
+                    c2 = res[2];
+                }
+            }
+        }
+
+        for (int i = r1; i <= r2; i++) {
+            for (int j = c1; j <= c2; j++) {
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        return maxSum;
+    }
+////////////////////////////////////////////////////////////////////
 
 
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////
