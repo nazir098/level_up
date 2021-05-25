@@ -660,9 +660,10 @@ int numberOfSubarrays(vector<int>& nums, int k) {
         return ans;
         
     }
-////////////////////////////////////////////////////////////////////////
-485. Max Consecutive Ones
-
+// ////////////////////////////////////////////////////////////////////////
+// 485. Max Consecutive Ones
+// 1.Genreal method sliding window wala
+// 2. question based approcach
 int findMaxConsecutiveOnes(vector<int> &nums)
 {
         int n = nums.size(), si = 0, ei = 0, len = 0, count = 0;
@@ -671,7 +672,7 @@ int findMaxConsecutiveOnes(vector<int> &nums)
             if (nums[ei++] == 0)
                 count++;
 
-            while (count == 1) {      //jse hi zero aya hme shrink krna basically si ar ei ek pas aa jayenge
+            while (count == 1) {      //jse hi zero aya hme shrink krna basically si ar ei overlap  kr jayenge
                 if (nums[si++] == 0)
                     count--;
             }
@@ -697,20 +698,150 @@ int findMaxConsecutiveOnes(vector<int>& nums)
         return ans;
   }
 ////////////////////////////////////////////////////////////////////////
-//Q.930. Subarrays With Sum==target
-// Input: nums = [1,0,1,0,1], goal = 2
-// Output: 4
-// Explanation: 
-// The 4 subarrays are bolded below:
-// [1,0,1,0,1]
-// [1,0,1,0,1]
-// [1,0,1,0,1]
-// [1,0,1,0,1]
-// brute force approach is to find all sum substring and compare with goal
-//another approach is atmostsum(target-1)-atmostsum(target)
-// another approach is sliding window as used in exact distinct element
+//  Max Consecutive Ones(one flip possible)
+// 1.genreal approach sliding window wala
+// 2. shifting of si directly whenever we get break
+int findMaxConsecutiveOnes(int[] arr) {
+        int n = arr.size(), si = 0, ei = 0, count = 0, len = 0;
+
+        while (ei < n) {
+            if (arr[ei++] == 0)
+                count++;
+
+            while (count == 2)  // is loop k chalne k bad cnt hmesha 1 rhega iska mtlb ek flipped included h
+                if (arr[si++] == 0)
+                    count--;
+
+            len = Math.max(len, ei - si);
+        }
+
+        return len;
+    }
+///////////
+int findMaxConsecutiveOnes(vector<int> &arr) {
+        int n = arr.size(), si = 0, ei = 0, firstZeroIndex = -1, len = 0;
+
+        while (ei < n) {
+            if (arr[ei++] == 0) {  //jse hi break aya index ko sambhalo
+                si = firstZeroIndex + 1;
+                firstZeroIndex = ei - 1;
+            }
+
+            len = Math.max(len, ei - si);
+        }
+
+        return len;
+    }
+////////////////////////////////////////////////////////////////////////
+// Q.1004. Max Consecutive Ones (atmost k flips are possible)
+// 1.Genreal approach sliding window
+
+int longestOnes(vector<int>& nums, int k) 
+    {
+        int ei=0,si=0,ans=0,cnt=0,n=nums.size();
+        
+        while(ei<n)
+        {
+            if(nums[ei++]==0)
+                cnt++;
+            
+            while(cnt==k+1)
+            {
+                if(nums[si++]==0)
+                    cnt--;
+            }
+            ans=max(ans,ei-si);
+        }
+        return ans;
+    }
+///////////////////////////////////////////////////////////////////////
+// 974. Subarray Sums Divisible by K
+// concept ye h k kisi bhi do same (prefix sum ka reminder) m ek asa subarray exist kr rha h jisk
+// sum ko k se divide kre to rem 0 ayega
+int subarraysDivByK(vector<int>& nums, int k) 
+{
+        int sum=0,ans=0;
+        unordered_map<int,int>map;
+        map[0]=1;
+        
+        while(ei<nums.size())
+        {
+            sum+=nums[ei++];
+            
+            
+            
+            ans+=map[(sum%k+k)%k]++;  //each time adding mtlb abhi tk jitne fre ayi hui h utne possible combination h current freq k sath
+                
+        }
+        return ans;
+    }
+////////////////////////////////////////////////////////////////////////
+// https://practice.geeksforgeeks.org/problems/count-subarrays-with-equal-number-of-1s-and-0s-1587115620/1
+// Subarrays with equal 1s and 0s 
+// 0 ko -1 assume kr k sum kro ar sum zero ka subarray nikal lo
+int countSubarrWithEqualZeroAndOne(int arr[], int n)
+    {
+        int ei=0,si=0,cnt=0,ans=0,sum=0;
+        unordered_map<int , int>fre;
+        fre[0]=1;
+        while(ei<n)
+        {
+            if(arr[ei++]==0)
+            sum+=-1;
+            else
+            sum+=1;
+            
+        ans+=fre[sum];
+        fre[sum]++;
+            
+        }
+        return ans;
+        
+    }	
 
 ////////////////////////////////////////////////////////////////////////
+//Q.return the maximum length of a contiguous subarray with an equal number of 0 and 1.
+// map use krne ka mtlb khali fre store krna nhi hota indx bhi store kr skte h
+int findMaxLength(vector<int>& nums) 
+{
+        int ei=0,sum=0,ans=0;
+        unordered_map<int, int>mapind;
+        mapind[0]=0;
+        while(ei<nums.size())
+        {
+            nums[ei++]==0?sum+=-1:sum+=1;
+            
+            if(mapind.find(sum)==mapind.end())
+                mapind[sum]=ei;
+            ans=max(ans,ei-mapind[sum]);
+         
+        }
+        return ans;
+}
+///////////////////////////////////////////////////////////////////////
+// Q.239. Sliding Window Maximum
+//using hashmap 
+//using deque yet to be done
+vector<int> maxSlidingWindow(vector<int> &nums, int k)
+{
+    // {val, index}
+    priority_queue<vector<int>> pq;
+
+    int n = nums.size(), idx = 0;
+    vector<int> ans;
+    for (int i = 0; i < nums.size(); i++)
+    {
+        while (pq.size() != 0 && pq.top()[1] <= i - k)
+            pq.pop();
+
+        pq.push({nums[i], i});
+
+        if (i >= k - 1)
+            ans.push_back(pq.top()[0]);
+    }
+    return ans;
+}
+//////////////////////////////////////////////////////////////////////
 
 340
 1456
