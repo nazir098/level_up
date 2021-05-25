@@ -842,13 +842,28 @@ vector<int> maxSlidingWindow(vector<int> &nums, int k)
     return ans;
 }
 //////////////////////////////////////////////////////////////////////
+//Q.kadanes algorithm
+maxSubarraySum(int arr[], int n){
+        
+        int gs=-1e9,cs=0;
+        for(int i=0;i<n;i++)
+        {
+           if(cs+arr[i]<arr[i])
+           cs=arr[i];
+           else
+           cs+=arr[i];
+           
+           if(gs<cs)
+           gs=cs;
+	   
+/*cs=max(cs+arr[i],arr[i]);
+gs=max(cs,gs)
+*/
+        }
+        return gs;
+}
 
-340
-1456
-//////////
-1. https://www.geeksforgeeks.org/smallest-window-contains-characters-string/
-2. 340
-3. 1456
-4. 992
-5. 1248
-6. https://practice.geeksforgeeks.org/problems/longest-k-unique-characters-substring0853/1
+/////////////////////////////////////////////////////////////////////
+//Q.subarray of max sum
+
+
