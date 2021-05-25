@@ -601,7 +601,101 @@ int numberOfSubarrays(vector<int>& nums, int k) {
         return ans;
     }
 ////////////////////////////////////////////////////////////////////////
+//Q.930. Binary Subarrays With Sum
+// it is based on the principle of prefix sum, agr ek indx pe prefix sum x h ar ek jgh pe prefix y h
+// sath m ek condition satisfy ho rhi h=> x+k=y iska mtlb x ar y k bich m ek asa subarray exist krta h jiska 
+// sum k h
+// 1.aprroach using hashmap prefix sum
+// 2.using sliding window , for exact k distinct
+// 3.atmost(arr,goal)-atmost(arr,goal-1)
+    int numSubarraysWithSum(vector<int>arr, int goal) {
+  
+	int ei=0, si=0, cnt=0, n=arr.size() ,ans=0,sum=0;
+    unordered_map<int,int>fre;
+	fre[0]=1;
+	while(ei<n)
+	{
+		 sum=sum+arr[ei++];
+            ans+=fre[sum-goal];
+            fre[sum]++;
+	}
+	return ans;
 
+    }
+   ///////////////// 
+  int numSubarraysWithSum(vector<int>& nums, int goal)
+  {
+        int start=0,end=0,pre=0,sum=0,ans=0;
+        
+        while(end<nums.size())
+        {
+            if(nums[end]==1)
+            {
+                sum++;
+            }
+            
+            if(sum>goal)
+            {
+                while(nums[start]!=1)
+                {
+                    start++;
+                }
+                start++;
+                pre=0;
+                sum--;
+            }
+            
+            while(start<end&&nums[start]==0)
+            {
+                pre++;
+                start++;
+            } 
+            
+            if(sum==goal&&start<=end)
+               ans+=pre+1;
+            end++;
+        }
+        
+        
+        return ans;
+        
+    }
+////////////////////////////////////////////////////////////////////////
+485. Max Consecutive Ones
+
+int findMaxConsecutiveOnes(vector<int> &nums)
+{
+        int n = nums.size(), si = 0, ei = 0, len = 0, count = 0;
+        while (ei < n) 
+	{
+            if (nums[ei++] == 0)
+                count++;
+
+            while (count == 1) {      //jse hi zero aya hme shrink krna basically si ar ei ek pas aa jayenge
+                if (nums[si++] == 0)
+                    count--;
+            }
+
+            len = max(len, ei - si);
+        }
+        return len;
+    }
+//////////////
+int findMaxConsecutiveOnes(vector<int>& nums)
+{
+        int ei=0,cnt=0,ans=0;
+        
+        while(ei<nums.size() )
+        {
+            if(nums[ei++]==1)
+                cnt++;
+            else
+                cnt=0;
+            
+            ans=max(ans,cnt);
+        }
+        return ans;
+  }
 ////////////////////////////////////////////////////////////////////////
 //Q.930. Subarrays With Sum==target
 // Input: nums = [1,0,1,0,1], goal = 2
