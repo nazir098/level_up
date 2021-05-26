@@ -12,12 +12,13 @@ array are sorted
 //usko hm dry run se solve krenge
 //jse startind function m hm si variable as a index le rhe h ar ye bhi dikh rha h k si sirf bdh skta h to 
 //ye possible h k ye kbhi bhi size k bahr chale jaye is liye ek check lgana pdega
+//jb bhi dry run kro si<=ei tk kia kro 
      int StartingIndx(vector<int> nums,int tar)
     {
         int si=0,ei=nums.size()-1,mid=0;
         while(si<=ei)
         {
-            mid=(si+ei)/2;
+            mid=(si+ei)/2;     // si + (ei - si) / 2;
             
             if(tar>nums[mid])
                 si=mid+1;
@@ -36,7 +37,7 @@ array are sorted
         int si=0,ei=nums.size()-1,mid=0;
         while(si<=ei)
         {
-            mid=(si+ei)/2;
+            mid=(si+ei)/2;          // si + (ei - si) / 2;
             
             if(tar<nums[mid])
                 ei=mid-1;
@@ -96,11 +97,70 @@ int StartingIndx(vector<int> nums,int tar)
 
         }
 ///////////////////////////////////////////////////////////////////////////
+//Q.35. Search Insert Position
+int searchInsert(vector<int>& nums, int target) {
+        int ei=nums.size()-1,si=0,mid=0;
+        while(si<=ei)
+        {
+            mid=(si+ei)/2;
+            if(nums[mid]==target)
+                return mid;
+            else if(nums[mid]<target)
+                si=mid+1;
+            else
+                ei=mid-1;
+        }
+        return si<0?0:si;
+    }
 
+///////////////////////////////////////////////////////////////////////////
 
+int insertLocation(vector<int> &arr, int data)  //same as finding EndingInd +1 
+{
+    int n = arr.size(), si = 0, ei = n - 1;
+    while (si <= ei)
+    {
+        int mid = (si + ei) / 2;
+        if (arr[mid] <= data)
+            si = mid + 1;
+        else
+            ei = mid - 1;
+    }
 
+    return si;
+}
 
+int perfectPosOfElement(vector<int> &arr, int data)
+{
+    int insertPos = insertLocation(arr, data);
+    int lastIndex = insertPos - 1;
 
+    return (lastIndex >= 0 && arr[lastIndex] == data) ? lastIndex : insertPos;
+}
+///////////////////////////////////////////////////////////////////////
+//Q.Find closest number in array
+int nearestElement(vector<int> &arr, int data)
+{
+    if (arr.size() == 0)
+        return 0;
+
+    int n = arr.size();
+    if (data <= arr[0] || data >= arr[n - 1])
+        return data <= arr[0] ? arr[0] : arr[n - 1];
+
+    int si = 0, ei = n - 1;
+    while (si <= ei)
+    {
+        int mid = (si + ei) / 2;
+        if (arr[mid] <= data)
+            si = mid + 1;
+        else
+            ei = mid - 1;
+    }
+
+    return data - arr[ei] <= arr[si] - data ? arr[ei] : arr[si];
+}
+////////////////////////////////////////////////////////////////////////
 
 
 
