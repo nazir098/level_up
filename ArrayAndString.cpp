@@ -922,51 +922,110 @@ maxSubarraySum(int arr[], int n)
 ////////////////////////////////////////////////////////////////////
 // if we want to print matrix
 //now we are expecting our kadance function to give 3 information {val,si,ei}
-vector<int> kadancesubarray(vector<int> arr)
+    vector<int> kadancesubarray(vector<int> arr)
 {
-	for(int el:arr)
+	int csum=0,gei=0,gsi=0,gsum=-(int)1e9,csi=0;
+	for(int i=0;i<arr.size();i++)
 	{
+		int el=arr[i];
+		csum+=el;
+		if(csum<=el)
+		{
+			csum=el;
+			csi=i;
+		}
 		
+		if(gsum<csum)
+		{
+			gsum=csum;
+			gsi=csi;
+			gei=i;
+		}
 	
 	}
+	return {gsum,gsi,gei};
 }
-    int maximumSumRectangle_02(int R, int C, int arr[][]) {
+    int maximumSumRectangle(int R, int C, vector<vector<int>>arr)
+    {
         int n = R, m = C, maxSum = -(int) 1e9;
-        int[] colPrefixSum = new int[m];
+     
 
         int r1 = 0, c1 = 0, r2 = 0, c2 = 0;
 
-        for (int fixRow = 0; fixRow < n; fixRow++) {
+        for (int fixRow = 0; fixRow < n; fixRow++) 
+         	{
 
-            Arrays.fill(colPrefixSum, 0);
+              vector<int> colPrefixSum (m,0);
 
-            for (int row = fixRow; row < n; row++) {
+            for (int row = fixRow; row < n; row++) 
+	        {
                 for (int col = 0; col < m; col++)
-                    colPrefixSum[col] += arr[row][col];
+	       	{  
+			colPrefixSum[col] += arr[row][col];
+	     	}
 
-                int[] res = kadanesAlgoGenericSubarray(colPrefixSum);
+                auto res = kadancesubarray(colPrefixSum);
                 if (res[0] >= maxSum) {
                     maxSum = res[0];
                     r1 = fixRow;
                     c1 = res[1];
                     r2 = row;
                     c2 = res[2];
-                }
-            }
-        }
+             }
+         }
+    }
 
         for (int i = r1; i <= r2; i++) {
             for (int j = c1; j <= c2; j++) {
-                System.out.print(arr[i][j] + " ");
+                cout<<arr[i][j] << " ";
             }
-            System.out.println();
+            cout<<endl;
         }
 
         return maxSum;
     }
-////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+//Q.1074. Number of Submatrices That Sum to Target
+// concept is same as above find all the combination by fixing upper boundry then cnt the subarray
+     int fun(vector<int>arr,int goal)
+     {       
+  	int ans=0,sum=0;
+    unordered_map<int,int>fre;
+	fre[0]=1;
+    for(int r=0;r<arr.size();r++)
+	{
+        sum=sum+arr[r];
+        ans+=fre[sum-goal];
+        fre[sum]++;
+    
+	}
+         return ans;
+     }
+        
+    
 
+    int numSubmatrixSumTarget(vector<vector<int>>& arr, int target)
+    {
+        int ans=0;
+            for(int fixed=0;fixed<arr.size();fixed++)
+            {
 
+                vector<int>presum(arr[0].size(),0);
+                for(int r=fixed;r<arr.size();r++)
+                {
+                    for(int c=0;c<arr[0].size();c++)
+                    {
+                        presum[c]+=arr[r][c];
+
+                    }
+                      int cnt= fun(presum,target);
+                      ans+=cnt;
+                }
+        
+            }
+        return ans;
+    }
+////////////////////////////////////////////////////////////////////////
 
 
 
