@@ -1026,6 +1026,67 @@ maxSubarraySum(int arr[], int n)
         return ans;
     }
 ////////////////////////////////////////////////////////////////////////
+// Q.781. Rabbits in Forest
+// hme min nikalna h isliye hm ye manenge k agli bar koi same no. bolega to ye manunga k wo same colour ka h
+// agr m dusre clor ka maan lnga to max nikal jayega isliye frequecy store kr lo k jyada se jyada utne hi bar bole 
+ int numRabbits(vector<int>& answers)
+ {
+        int arr[1000]={0};
+        int sum=0;
+        for(int i=0;i<answers.size();i++)
+        {
+            if(arr[answers[i]]==0)
+            {  sum+=answers[i]+1;
+                arr[answers[i]]=answers[i];
+            }
+            else
+                arr[answers[i]]--;
+        }
+        return sum;
+    }
+///////////////////////////////////////////////////////////////////////////
+//Q.363. Max Sum of Rectangle No Larger Than K
+    int kadance(vector<int>arr)
+    {
+        int ans=0,gs=-1e9,cs=0;
+        for(int i=0;i<arr.size();i++)
+        {
+            cs+=arr[i];
+            cs=max(cs,arr[i]);
+            gs=max(cs,gs);
+        }
+        return gs;
+    }
+    int maxSumSubmatrix(vector<vector<int>>& matrix, int k) 
+    {
+        int ans=0;
+            for(int fixed=0;fixed<arr.size();fixed++)
+            {
+
+                vector<int>presum(arr[0].size(),0);
+                for(int r=fixed;r<arr.size();r++)
+                {
+                    for(int c=0;c<arr[0].size();c++)
+                    {
+                        presum[c]+=arr[r][c];
+
+                    }
+                      int cnt= kadance(presum);
+                      if(cnt==k)
+                          return cnt;
+                       else if(cnt<k)
+                        ans=max(ans,cnt);
+                    else
+                        
+                        ???????
+                }
+        
+            }
+        return ans;
+    }
+
+///////////////////////////////////////////////////////////////////////
+
 
 
 
