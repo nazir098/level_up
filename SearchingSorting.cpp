@@ -161,6 +161,19 @@ int nearestElement(vector<int> &arr, int data)
     return data - arr[ei] <= arr[si] - data ? arr[ei] : arr[si];
 }
 ////////////////////////////////////////////////////////////////////////
+//Quick sort
+//average time: NlogN +N
+//wrost case: N^2
+// two swap method is not genric it cant work in linked list
+//we will go by dividing the region which is more genric to find the exact location of pivot
+//what if someone says k tum pivot 3rd ind ko lo. to dry run m asa dekha h k jo value last ind pe hoti h
+//arr k wo exact position pe ati h agr usko pivot mana gya ho to
+int PivotInd(vector<int >&arr,int si, int ei,int pivot)
+{
+     swap(arr[pivot],arr[ei]);
+     while(si<=ei)
+}
+//////////////////////////////////////////////////////////////////////////
 
 
 
