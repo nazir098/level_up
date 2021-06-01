@@ -174,7 +174,91 @@ int PivotInd(vector<int >&arr,int si, int ei,int pivot)
      while(si<=ei)
 }
 //////////////////////////////////////////////////////////////////////////
+    int search(vector<int>& nums, int target) {
+        
+        int n=nums.size(),si=0,ei=n-1,mid;
+        while(si<=ei)
+        {
+            mid=(si+ei)/2;
+            if(nums[mid]==target)
+                return mid;
+            
+            else if(nums[si]<=nums[mid])
+            {
+                if(nums[si]<=target && target<nums[mid])
+                    ei=mid-1;
+                else
+                    si=mid+1;
+                
+            }
+            else
+            {
+                  if(nums[ei]>=target && target>nums[mid])
+                    si=mid+1;
+                else
+                    ei=mid-1;
+                
+            }
+        
+        }
+        return -1;
+    }
+////////////
+    int search(vector<int>& nums, int target)
+    {
+         int n=nums.size(),si=0,ei=n-1,mid;
+        
+        if(n==1&&nums[0]==target)return 0;
+        else if(n==1&&nums[0]!=target)return -1;
+        
+        int pivot=min(nums,target);
+        int left= bs(nums,target,si,pivot-1);
+        int right=bs(nums,target,pivot,ei);
+        
+        if(left!=-1)return left;
+        return right;    
 
+    }
+////////////////////////////////////////////////////////////////////////////
+    bool search(vector<int>& nums, int target)
+    {
+         int n=nums.size(),si=0,ei=n-1,mid;
+        
+        if(nums[0]==target)return true;
+    
+        while(si<=ei)
+        {
+            mid=(si+ei)/2;
+            if(nums[mid]==target||nums[si]==target)
+                    return true;
+            else if(nums[si]<nums[mid])
+            {
+               
+                if(target<nums[mid] && target>=nums[si])
+                    ei=mid-1;
+                else
+                    si=mid+1;
+                
+            }
+            else if(nums[mid]<nums[ei])
+            {
+                if(target>nums[mid]&&target<=nums[ei])
+                    si=mid+1;
+                else
+                    ei=mid-1;
+            }
+            else
+                si++;
+            
+        }
+
+        return false;
+
+
+    }
+/////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////
 
 
 
