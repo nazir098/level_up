@@ -257,6 +257,34 @@ int PivotInd(vector<int >&arr,int si, int ei,int pivot)
 
     }
 /////////////////////////////////////////////////////////////////////////////
+Q.154. Find Minimum in Rotated Sorted Array II
+
+         int findMin(vector<int>& nums) {
+        int n=nums.size(),si=0,ei=n-1,mid;
+        
+        while(si<ei)
+        {
+            mid=(si+ei)/2;
+            
+            if(nums[si]<nums[mid])  //array is sorted from si to mid
+            {
+                if(nums[si]<nums[ei])  //in ideal case when array have no rotation or no rotation in range of si to ei =>array will always be the starting ele
+                    ei=si;
+                else
+                 si=mid+1;
+            }
+            else if(nums[mid]<nums[ei])  //array is sorted from mid to ei
+            {
+                 if(nums[mid]<nums[ei])  //in ideal case when there is no rotation or no rotation in range of mid to ei =>array will always be the starting element i.e mid ele
+                     ei=mid;
+                else
+                    si=mid+1;
+            }
+            else                   //when both element get equal just try to make conditon false by increasing si or dec ei
+                si++;
+        }
+        return nums[si];
+    }
 
 ////////////////////////////////////////////////////////////////////////////
 
