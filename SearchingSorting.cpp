@@ -300,6 +300,7 @@ Q.154. Find Minimum in Rotated Sorted Array II
     
 ///////////////////////////////////////////////////////////////////////////
 // Q. Union of Two Sorted Arrays
+// https://practice.geeksforgeeks.org/problems/union-of-two-sorted-arrays/1
     vector<int> findUnion(int arr1[], int arr2[], int n, int m)
     {
        vector<int>res;
@@ -332,6 +333,29 @@ Q.154. Find Minimum in Rotated Sorted Array II
           }
           
        return res;
+    }
+//////////////////////////////////////////////////////////////////////////
+// 74. Search a 2D Matrix
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int m=matrix.size();
+        int n=matrix[0].size();
+        int si=0,ei=m*n-1,mid=0;
+        
+        while(si<=ei)
+        {
+            mid= si+ (ei-si)/2;
+            int r=mid/n;
+            int c=mid%n;
+                
+            if(matrix[r][c]==target)
+                return true;
+            else if(matrix[r][c]>target)
+                ei=mid-1;
+            else
+                si=mid+1;
+            
+        }
+        return false;
     }
 ////////////////////////////////////////////////////////////////////////////
 
