@@ -13,6 +13,18 @@ array are sorted
 //jse startind function m hm si variable as a index le rhe h ar ye bhi dikh rha h k si sirf bdh skta h to 
 //ye possible h k ye kbhi bhi size k bahr chale jaye is liye ek check lgana pdega
 //jb bhi dry run kro si<=ei tk kia kro 
+// comprator class is written like that
+class comp
+{
+public:
+    bool operator()(const vector<int> &a, const vector<int> &b) const
+    {
+      if(a<b)
+           return true;
+         else
+              return false;
+    }
+};
      int StartingIndx(vector<int> nums,int tar)
     {
         int si=0,ei=nums.size()-1,mid=0;
