@@ -5,6 +5,9 @@ dry run on corner cases of
 -index for inserting in non repeating array
 -index for inseerting in repeating array
 array are sorted
+/******INTUTION BEHIND BINARY SEARCH******\
+there are many possible answer but u have to find minimum (in most cases "BBBBGGGG") or maximum optimal answers;B-BAD,G-GOOD
+Another thing is common that it must be contigious in an array otherwise the question would become of dp
 //what should be keep in mind while writing binary search code?
 // hmare pas ei,si,mid h to hme is baat ka hmesha dhyan rkhna h k 
 // kisi bhi corner case pe wo variable invalid na ho jo array m as
