@@ -28,6 +28,36 @@ public:
               return false;
     }
 };
+
+//if  want to apply binary search on decimal value then u need to take a precision value as a constant factor
+//understand it by an example of finding nth root of number with precision of p\
+ double mySqrt(double num,int pre,int nthroot) {
+    	pre+=1;
+        float si=0,ei=num/2+1,mid;
+        const double fl=-(int)1e(pre);
+        while(ei-si>fl)
+        {
+            mid=(ei+si)/2;
+            if(mid*mid<num)//multiply nthroot times to get nth root 
+                si=mid;
+            else
+                ei=mid;
+        }
+
+
+        
+      return  ei;//u can return either si or ei or mid
+    }
+    ///////////////////////
+int main()
+{
+  vector<int>vec={1,1,1,10,10,10};
+
+double x=2;
+int precision=3;
+int nthroot=2;
+cout<<mySqrt(x,precision,nthroot);
+}
      int StartingIndx(vector<int> nums,int tar)
     {
         int si=0,ei=nums.size()-1,mid=0;
