@@ -1,3 +1,9 @@
+combination and subsequence is same 
+permutation is all combination
+P>C
+In combination element is clubbed from the right side only
+but in permutation all element is taken except the  used element 
+collection of some element from a bunch is combination
 
 //top to bottom
 int firstidx(vector<int>arr,int idx,int data)
