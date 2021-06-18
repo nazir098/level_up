@@ -1,4 +1,5 @@
 //394
+//when open bracket comes then push into the stack to the res,num
 string decodeString(string s) {
         stack<string>sstk;
 	stack<int>nstk;
