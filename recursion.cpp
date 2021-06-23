@@ -223,7 +223,59 @@ pair_ longestPath(int sr, int sc, vector<vector<bool>> &vis, vector<vector<int>>
 ////////////////////////////
 322. Coin Change
 //min no. of coin required to achieve a target
+//very important question
+//use either permutation or combination ans will be same(dynamic p)
+//here you will learn how to find combination or permutation using top to bottom approach
+int change(vector<int>arr,int amt,int ind)//i did using combination it could also be done in permutation
+    {
+        if(amt==0)
+        {
+                return 0;   
+        }
+        int ans=1e9;
+        for(int i=ind;i<arr.size();i++)
+        {
+             int myrec;
+            if(amt-arr[i]>=0)
+            {
+                myrec = change(arr,amt-arr[i],i);
+                if(myrec!=1e9&&ans>(myrec+1))
+                ans=myrec+1;
+            }    
+	}
+        return ans;   
+    }
 
+    int coinChange(vector<int>& coins, int amt) {
+         int n=   change(coins,amt,0);
+        return n!=1e9?n:-1;
+        
+    }
+
+//////////////////////////////
+ int PermutationSingleCoins_subsequence(int[] arr, int tar, int idx, string ans) {
+        if (tar == 0 || idx == arr.size()) //size check is not required in case of using for loop as for loop condition is suff
+	{
+            if (tar == 0) {
+                cout<<ans<<endl;
+                return 1;
+            }
+            return 0;
+        }
+
+        int count = 0;
+
+        if (arr[idx] > 0 && tar - arr[idx] >= 0) 
+	{
+            int val = arr[idx];
+            arr[idx] = -val;
+            count += PermutationSingleCoins_subsequence(arr, tar - val, 0, ans + val);
+            arr[idx] = val;
+        }
+        count += PermutationSingleCoins_subsequence(arr, tar, idx + 1, ans);//if coint doesnt take part in ans then ind+1;
+
+        return count;
+    }
 
 
 
