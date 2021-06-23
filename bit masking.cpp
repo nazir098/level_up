@@ -1,7 +1,8 @@
 concepts:
+1<<k==2^k
 y=n & n-1 => remove the first one from left side 
 p=n & -n => it makes the first 1 to 1 and rest of the thing will be zero
-n= y|p =>we will get the same no
+n= y|p =>we will get the same no.
 
 bits as boolean array
 kth index, arr[k]           ==1<<k
@@ -90,4 +91,21 @@ int hammingWeight(uint32_t n) {
         return false;
     }
     ///////////////////////////////////////////
-    
+    78. Subsets
+        vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>>ans;
+        int n=nums.size();
+        int possible_set=1<<n;
+        
+        for(int i=0;i<possible_set;i++)
+        {
+            vector<int>tem;
+            for(int j=0;j<n;j++)
+            {
+                if((1<<j)&i)
+                    tem.push_back(nums[j]);
+            }
+            ans.push_back(tem);
+        }
+        return ans;
+    }
