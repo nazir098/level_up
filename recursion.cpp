@@ -113,8 +113,116 @@ first loop should of direction coz of that we can stop our extra call
 second loop radius so that we increment in one direcn again and again whenever encounter out of bound just break from there
 
 
+////////////////////////////////////////////////////////////////////////////////////////
+int permutationUnique2(string str, string ans)
+{
+    if (str.length() == 0)
+    {
+        cout << ans << endl;
+        return 1;
+    }
+
+    char prev = '$';
+    int count = 0;
+    for (int i = 0; i < str.length(); i++)
+    {
+        char ch = str[i];
+        if (prev != ch)
+        {
+            string ros = str.substr(0, i) + str.substr(i + 1);
+            count += permutationUnique2(ros, ans + ch);
+        }
+        prev = ch;
+    }
+
+    return count;
+}
+//////////////
+//40. Combination Sum II
+void combin(vector<int>& arr, vector<int> ansf,vector<vector<int>>&ans,int target,int ind)
+    {
+        if(target==0)
+        {
+            ans.push_back(ansf);
+            
+            return;
+        }
+       int pre=-1;
+        for(int i=ind;i<arr.size();i++)
+        {
+        if(target-arr[i]>=0&&pre!=arr[i])
+        { 
+            ansf.push_back(arr[i]);
+            combin(arr,ansf ,ans, target-arr[i],i+1);
+            ansf.pop_back();
+        
+        }
+            pre=arr[i];
+                
+        }
+        return;
+    }
+    
+    vector<vector<int>> combinationSum2(vector<int>& arr,int target) 
+    {
+        vector<vector<int>>ans;
+        vector<int>v;
+        sort(arr.begin(),arr.end());
+        combin(arr, v,ans, target,0); 
+        return ans;
+    }
 
 
+class pair_
+{
+public:
+    string psf = "";
+    int len = 0;
+
+    pair_(string psf, int len)
+    {
+        this->len = len;
+        this->psf = psf;
+    }
+};
+
+pair_ longestPath(int sr, int sc, vector<vector<bool>> &vis, vector<vector<int>> &dir, vector<string> &dirS)
+{
+    int n = vis.size(), m = vis[0].size();
+    if (sr == n - 1 && sc == m - 1)
+    {
+        pair_ base("", 0);
+        return base;
+    }
+
+    vis[sr][sc] = true; // blocked
+    pair_ myAns("", -1);
+    for (int d = 0; d < dir.size(); d++)
+    {
+        int r = sr + dir[d][0];
+        int c = sc + dir[d][1];
+
+        if (r >= 0 && c >= 0 && r < n && c < m)
+        {
+            if (!vis[r][c])
+            {
+                pair_ recAns = longestPath(r, c, vis, dir, dirS);
+                if (recAns.len != -1 && recAns.len + 1 > myAns.len)
+                {
+                    myAns.len = recAns.len + 1;
+                    myAns.psf = dirS[d] + recAns.psf;
+                }
+            }
+        }
+    }
+
+    vis[sr][sc] = false; // unblocked
+    return myAns;
+}
+
+////////////////////////////
+322. Coin Change
+//min no. of coin required to achieve a target
 
 
 
