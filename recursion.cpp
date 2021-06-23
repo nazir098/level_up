@@ -63,7 +63,55 @@ int subseq(string &str, int idx, string ans, vector<string> &res)
 	count+=subseq(str, idx+1,  ans,  res);
 	return count;
 }
+//coin change method to find subsequence
+int Subsequence_coin(string str,string ans,int ind)
+{
+	cout<<ans<<endl;
+	if(ind==str.size())
+	{
+          return 1;
+	}
 
+	int count=0;
+	for(int i=ind;i<str.size();i++)
+	{ 
+		count+=Subsequence_coin(str,ans+str[i],i+1);
+	}
+
+return count;
+}
+///////////////
+//78. Subsets: make a tree diagram analyze the need of pop_back in it
+//coin change method
+void subseq(vector<int>arr,vector<int>asf,vector<vector<int>>&ans,int ind)
+    {
+        ans.push_back(asf);
+        if(ind==arr.size())
+        {
+            return;
+        }
+        for(int i=ind;i<arr.size();i++)
+        {
+            asf.push_back(arr[i]);
+            subseq(arr,asf,ans,i+1);
+            asf.pop_back();
+        }
+    }
+   //subsequence method
+void subseq(vector<int>arr,vector<int>asf,vector<vector<int>>&ans,int i)
+{
+        
+      if(i==arr.size())
+    {
+    ans.push_back(asf);
+    return;
+   }
+         
+    asf.push_back(arr[i]);
+    subseq(arr,asf,ans,i+1);
+    asf.pop_back();
+    subseq(arr,asf,ans,i+1);     
+    }
 //https://practice.geeksforgeeks.org/problems/rat-in-a-maze-problem/1#
 //simple version of flood fill
 //no need of visited array we can use given matrix as visited array
