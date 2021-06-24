@@ -109,3 +109,26 @@ int hammingWeight(uint32_t n) {
         }
         return ans;
     }
+    ///////////////////////////////////////////////////////
+    260. Single Number III
+//     make 2 bucket then keep elements on the basis of 
+//     the first set bit in ans
+//     coz that bit will be only that one which is differing from both no.
+        vector<int> singleNumber(vector<int>& nums) {
+        long long ans=0;
+        for(auto el:nums)
+        {
+            ans^=el;
+        }
+        long long mask=(ans &(-ans));
+        long long one=0;
+        long long two=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            if((nums[i]&mask))
+                one^=nums[i];
+            else
+                two^=nums[i];
+        }
+        return {(int)one,(int)two};
+    }
