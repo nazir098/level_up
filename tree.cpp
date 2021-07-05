@@ -1,6 +1,9 @@
 whenever use morris traversal then dont return in between of the loop 
 instead take a variable and store the ans otherwise our tree will remained
 modified
+
+morris traversal: left ka rightmost node
+using stack: all left node into the stack
     void allright(Node* root,stack<Node*>&st)
     {
         while(root!=nullptr)
