@@ -17,6 +17,15 @@ Another thing is common that it must be contigious in an array otherwise the que
 //ye possible h k ye kbhi bhi size k bahr chale jaye is liye ek check lgana pdega
 //jb bhi dry run kro si<=ei tk kia kro 
 // comprator class is written like that
+
+//first method works fine in c++;
+//so prefer this only
+   static bool compar(vector<int> i1,vector<int> i2)
+{
+    return (i1[0] < i2[0]);
+}
+
+
 class comp
 {
 public:
