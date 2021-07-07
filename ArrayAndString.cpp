@@ -3,10 +3,24 @@
 a[]= 3 5 1 6 7 4; k=2-> k can be negative
 o/p: 1 6 7 4 3 5
  */ 
-#include <iostream>
-#include <vector>
+560. Subarray Sum Equals K
+intution behind solution
+  // Sliding window -- No, contains negative number
+        // hashmap + preSum
+        /*
+            1. Hashmap<sum[0,i - 1], frequency>
+            2. sum[i, j] = sum[0, j] - sum[0, i - 1]    --> sum[0, i - 1] = sum[0, j] - sum[i, j]
+                   k           sum      hashmap-key     -->  hashmap-key  =  sum - k
+            3. now, we have k and sum.  
+                  As long as we can find a sum[0, i - 1], we then get a valid subarray
+                 which is as long as we have the hashmap-key,  we then get a valid subarray
+            4. Why don't map[0, i - 1], 1] every time ?
+                  if all numbers are positive, this is fine
+                  if there exists negative number, there could be preSum frequency > 1
+        */
+767. Reorganize String
+using two prioeity queues of their frequency
 
-using namespace std;
 void rotateByK(vector<int> &arr, int r)
 {
     int n = arr.size();
