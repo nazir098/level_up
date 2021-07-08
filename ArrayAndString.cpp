@@ -295,27 +295,31 @@ int lengthOfLongestSubstring(string s) {
 ////////////////////////////////////////////////////////////
 //https://www.lintcode.com/problem/longest-substring-with-at-most-two-distinct-characters/description
 //Q. Longest substring with atmost 2 distinct charachter  
- int lengthOfLongestSubstring(string s) {
+    int lengthOfLongestSubstringTwoDistinct(string &s) {
+        // Write your code here
+
         int si=0,ei=0,ans=0,cnt=0;
         int freq[128]={0};
         if(s.size()<1)return s.size();
         while(ei<s.size())
         {
        
-            if(freq[s[ei]]==1) cnt++;
+            if(freq[s[ei]]==0) cnt++;
               
             freq[s[ei]]++;
-            ei++;
+             ei++;
             
-            while(cnt>0)
+            while(cnt>2)
             {
-                if(freq[s[si]]==2)cnt--;
-                
+                if(freq[s[si]]==1){cnt--;}
+               
                 freq[s[si]]--;
                 si++;
-            
+              
             }
+          
              ans=max(ans,ei-si);
+              
         }
            return ans;
     }
