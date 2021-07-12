@@ -216,7 +216,107 @@ possible try to impliment those two case then u will be done
         }
         return flag;
         
- 
+==============================================================
+->Binary Tree to DLL
+only three lines need to add , think what that could be
+it is just a track of prev node :)
+
+if u see carefully then at the end prev is pointing to the last node
+of the tree
+Node * bToDLL(Node *root)
+    {
+        
+       stack<Node*>st;
+       allleft(root,st);
+       
+       Node* dummy=new Node;
+       dummy->right=dummy->left=nullptr;
+       Node* prev=dummy;
+       while(st.size()!=0)
+       {
+           Node* curr = st.top();
+           st.pop();
+           
+           prev->right=curr;
+           curr->left=prev;
+           
+           prev=curr;
+           
+           allleft(curr->right,st);
+           
+       }
+       Node* head=dummy->right;
+       dummy->right=dummy->right->left=nullptr;
+        return head;
+===============================================================
+    Node * bToDLL(Node *root)
+    {
+        
+       stack<Node*>st;
+       allleft(root,st);
+       
+       Node* dummy=new Node;
+       dummy->right=dummy->left=nullptr;
+       Node* prev=dummy;
+       while(st.size()!=0)
+       {
+           Node* curr = st.top();
+           st.pop();
+           
+           prev->right=curr;
+           curr->left=prev;
+           
+           prev=curr;
+           
+           allleft(curr->right,st);
+           
+       }
+       Node* head=dummy->right;
+       dummy->right=dummy->right->left=nullptr;
+        return head;
+ ===========================     
+ // using morrison traversal method      
+        Node* curr=root;
+        Node* dummy= new Node;
+         dummy->data=-1;
+        dummy->right=dummy->left=nullptr;
+       
+      
+Node* prev=dummy;
+while(curr!=nullptr)
+{
+    Node* le= curr->left;
+    if(le==nullptr)
+    {
+        prev->right=curr;
+        curr->left=prev;
+        prev=curr;
+        curr=curr->right;
+    }
+        else
+        {
+            Node* rmn=rightmost(le,curr);
+            if(rmn->right==nullptr)
+            {
+                rmn->right=curr;
+                curr=curr->left;
+            }
+                else
+                {
+                    rmn->right=nullptr;   //link break
+                    
+                    prev->right=curr;     //link create
+                    curr->left=prev;
+                    
+                    prev=prev->right;      //shifting of pointers
+                    curr=curr->right;
+                }
+                
+            }
+ }
+    Node* head=dummy->right;
+    dummy->right=head->left=nullptr;
+    return head;
 ===============================================================      
 //637. Average of Levels in Binary Tree
         vector<double> levels(TreeNode* root)
