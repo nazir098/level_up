@@ -72,7 +72,8 @@ exactly one child node
 
 -> in counting the nodes u will have to do it in post order coz
 there are multiple ans possible in a path 
-==============================================================     
+============================================================== 
+
  fire a node tell how much time will took to fire whole tree   
      void printalldown(TreeNode* root,TreeNode* block,vector<vector<int>>&ans,int dist)
  {
@@ -118,6 +119,62 @@ there are multiple ans possible in a path
      return -1;
  }    
 ========================================================
+
+-> lca   236. Lowest Common Ancestor of a Binary Tree  
+if one present in left side and another is in right side or 2 more cases are 
+possible try to impliment those two case then u will be done
+   bool lca( TreeNode* root,TreeNode* first,TreeNode* second,TreeNode* &ans)
+    {
+        if(root==nullptr)
+            return false;
+        bool self=false;
+        if(root==first||root==second)
+            self=true;
+        
+        bool left=lca(root->left,first,second,ans);
+        bool right=lca(root->right,first,second,ans);
+        
+        if(left && right){
+             ans=root;
+            return true;
+        }
+        if(self&&right){
+            ans=root;
+            return true;
+        }
+        
+        if(self&&left){
+            ans=root;
+            return true;
+        }
+           
+        
+        return self||left||right;
+            
+        
+    }
+========================================================
+   ->LCA in binary search tree
+ bool llca(TreeNode* root, TreeNode* p, TreeNode* q,TreeNode* &ans)
+    {
+        
+        while(root!=nullptr)
+        {
+            if(root->val<p->val&&root->val<q->val)
+                root=root->right;
+            else if(root->val>p->val&&root->val>q->val)
+                root=root->left;
+            else
+                break;
+                
+        }
+        ans=root;
+        return true;
+        
+    }
+    
+ 
+===============================================================      
 //637. Average of Levels in Binary Tree
         vector<double> levels(TreeNode* root)
     {
@@ -149,8 +206,7 @@ there are multiple ans possible in a path
     }
     
     vector<double> averageOfLevels(TreeNode* root) {
-        
-        return levels(root);
+     return levels(root);
     }
 ========================================================
     1325. Delete Leaves With a Given Value
