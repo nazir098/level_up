@@ -172,7 +172,50 @@ possible try to impliment those two case then u will be done
         return true;
         
     }
-    
+==============================================================
+98. Validate Binary Search Tree
+//if you do without flag you will get error
+
+    bool isValidBST(TreeNode* root) {
+        TreeNode* curr=root;
+        long prev=-(long)1e13;
+        bool flag=true;
+        while(curr!=nullptr)
+        {
+            TreeNode* le=curr->left;
+         
+               
+            if(le==nullptr)
+            {
+                if(prev>=curr->val)
+                    {flag=false;}
+                prev=curr->val;
+                curr=curr->right;
+                
+            }
+            else
+            {
+                TreeNode* rmn=rightmost(le,curr);
+                if(rmn->right==nullptr)
+                {
+                    rmn->right=curr;
+                    curr=le;
+                    
+                }
+                else
+                {
+                     rmn->right=nullptr;
+                    if(prev>=curr->val)
+                        flag=false;
+                    prev=curr->val;
+                    curr=curr->right;
+                 
+                }
+            }
+            
+        }
+        return flag;
+        
  
 ===============================================================      
 //637. Average of Levels in Binary Tree
