@@ -65,6 +65,14 @@ void fun(Node* root,vector<int>asf,vector<vector<int>>&res)
     asf.pop_back();
     
 }
+=============================================================
+    ->exactly one child
+when the required case encounter still we go for search another
+exactly one child node
+
+-> in counting the nodes u will have to do it in post order coz
+there are multiple ans possible in a path 
+==============================================================     
 ========================================================
 //637. Average of Levels in Binary Tree
         vector<double> levels(TreeNode* root)
