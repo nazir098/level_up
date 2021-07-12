@@ -223,32 +223,7 @@ it is just a track of prev node :)
 
 if u see carefully then at the end prev is pointing to the last node
 of the tree
-Node * bToDLL(Node *root)
-    {
-        
-       stack<Node*>st;
-       allleft(root,st);
-       
-       Node* dummy=new Node;
-       dummy->right=dummy->left=nullptr;
-       Node* prev=dummy;
-       while(st.size()!=0)
-       {
-           Node* curr = st.top();
-           st.pop();
-           
-           prev->right=curr;
-           curr->left=prev;
-           
-           prev=curr;
-           
-           allleft(curr->right,st);
-           
-       }
-       Node* head=dummy->right;
-       dummy->right=dummy->right->left=nullptr;
-        return head;
-===============================================================
+
     Node * bToDLL(Node *root)
     {
         
