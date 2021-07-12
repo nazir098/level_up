@@ -27,6 +27,45 @@ using stack: all left node into the stack
         return curr->data;
     }
 =======================================================
+void fun(Node* root,vector<int>asf,vector<vector<int>>&res)
+{
+    if(root==nullptr)
+    return;
+    if(root->left==root->right)
+    {
+        
+        asf.push_back(root->data);
+        res.push_back(asf);
+        return ;
+    }
+    
+    asf.push_back(root->data);
+    fun(root->left,asf,res);
+    fun(root->right,asf,res);
+    
+    
+}    
+==========================    
+    mind the usecase of & while passing any vector if not use then complexity of only
+    this will be o(n)
+    void allRootLeafPath(Node* root,vector<int>&asf,vector<vector<int>>&res)
+{
+    if(root==nullptr)
+    return;
+    if(root->left==root->right)
+    {
+        vector<int>base(asf);     //copying vector once
+        base.push_back(root->data);
+        res.push_back(base);
+    }
+    
+    asf.push_back(root->data);
+    fun(root->left,asf,res);
+    fun(root->right,asf,res);
+    asf.pop_back();
+    
+}
+========================================================
 //637. Average of Levels in Binary Tree
         vector<double> levels(TreeNode* root)
     {
