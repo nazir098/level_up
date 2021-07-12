@@ -73,6 +73,50 @@ exactly one child node
 -> in counting the nodes u will have to do it in post order coz
 there are multiple ans possible in a path 
 ==============================================================     
+ fire a node tell how much time will took to fire whole tree   
+     void printalldown(TreeNode* root,TreeNode* block,vector<vector<int>>&ans,int dist)
+ {
+       if(root==NULL||root==block)
+       {
+           return;
+       }
+       if(dist==ans.size())
+       {
+           ans.push_back({});
+           
+       }
+         ans[dist].push_back(root->val);
+       printalldown(root->left,block,ans,dist+1);
+       printalldown(root->right,block,ans,dist+1);
+ }
+
+ int find(TreeNode* root,int key,vector<vector<int>>&ans)
+ {
+     if(root==NULL)
+     {
+         return -1;
+     }
+
+     if(root->val==key)
+     {
+         printalldown(root,NULL,ans,0);
+         return 1;
+     }
+     int left=find(root->left,key,ans);
+     int right=find(root->right,key,ans);
+     
+     if(left!=-1)
+     {
+         printalldown(root,root->left,ans,left);
+         return left+1;
+     }
+       if(right!=-1)
+     {
+         printalldown(root,root->right,ans,right);
+         return right+1;
+     }
+     return -1;
+ }    
 ========================================================
 //637. Average of Levels in Binary Tree
         vector<double> levels(TreeNode* root)
