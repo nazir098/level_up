@@ -1,5 +1,9 @@
  MOST imp question 
  binary tree to BST
+ ->sort the inorder traversal and then SDLL->BST
+   ->this method is not inplace and it wont give exact structure of tree
+->BT->DLL->SDLL->BST
+  ->this is how we can do inplace  
 
 whenever use morris traversal then dont return in between of the loop 
 instead take a variable and store the ans otherwise our tree will remained
@@ -295,6 +299,8 @@ while(curr!=nullptr)
     Node* head=dummy->right;
     dummy->right=head->left=nullptr;
     return head;
+==============================================================
+
 ===============================================================      
 //637. Average of Levels in Binary Tree
         vector<double> levels(TreeNode* root)
