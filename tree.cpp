@@ -300,7 +300,94 @@ while(curr!=nullptr)
     dummy->right=head->left=nullptr;
     return head;
 ==============================================================
+->construction set
+===================================
+Construct Binary Search Tree from Preorder Traversal
+    TreeNode* fun(vector<int>& pre,int &ind,int lr,int rr)
+    {
+        if(ind>=pre.size()||pre[ind]>rr||pre[ind]<lr)
+            return nullptr;
+        TreeNode* root=new TreeNode(pre[ind]); 
+        ind++;
+        
+        root->left=fun(pre,ind,lr,root->val);
+        root->right=fun(pre,ind,root->val,rr);
+        return root;
+    }
+    
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+       int ind=0;
+ 
+       return fun(preorder,ind,-1e9,1e9);
+        
+==============================================================
+Construct Tree from Inorder & Preorder
+     int pi=0;
+    int getind(int in[],int n,int ins,int ine)
+    {
+        for(int i=ins;i<=ine;i++)
+        {
+            if(in[i]==n)
+            return i;
+        }
+        return -1;
+    }
+    
+    
+    Node* fun(int in[],int pre[],int n,int &pi,int ins,int ine)
+    {
+        if(ins>ine||pi>=n)
+        return nullptr;
+        
+       int ind=getind(in,pre[pi],ins,ine);
+       
+       Node* root=new Node(pre[pi]);
+       pi++;
+       root->left=fun(in,pre,n,pi,ins,ind-1);
+       root->right=fun(in,pre,n,pi,ind+1,ine);
+       
+       return root;
+       
+    }
+    Node* buildTree(int in[],int pre[], int n)
+    {
+        if(n==0)return nullptr;
+       
+       return fun(in,pre,n,pi,0,n-1);
 
+==============================================================
+Tree from Postorder and Inorder
+  int getind(int in[],int n,int ins,int ine)
+    {
+        for(int i=ins;i<=ine;i++)
+        {
+            if(in[i]==n)
+            return i;
+        }
+        return -1;
+    }
+    
+    
+    Node* fun(int in[],int post[],int n,int &pi,int ins,int ine)
+    {
+        if(ins>ine||pi<0)
+        return nullptr;
+        
+       int ind=getind(in,post[pi],ins,ine);
+       
+       Node* root=new Node(post[pi]);
+       pi--;
+       root->right=fun(in,post,n,pi,ind+1,ine);
+       root->left=fun(in,post,n,pi,ins,ind-1);
+       
+       
+       return root;
+       
+    }
+Node *buildTree(int in[], int post[], int n) {
+    int ind=n-1;
+    return  fun(in,post,n,ind,0,n-1);
+}
 ===============================================================      
 //637. Average of Levels in Binary Tree
         vector<double> levels(TreeNode* root)
