@@ -438,3 +438,96 @@ root->left=removeLeafNodes(root->left, target);
 root->right=removeLeafNodes(root->right, target);
 return (root->left==root->right&&root->val==target)?nullptr:root;
     }
+===================================================================
+987. Vertical Order Traversal of a Binary Tree
+use of priority queue
+    void width(TreeNode* root,int hl,vector<int>&ans)
+    {
+        if(root==nullptr)return;
+        
+        ans[0]=min(ans[0],hl);
+        ans[1]=max(ans[1],hl);
+        
+        width(root->left,hl-1,ans);
+        width(root->right,hl+1,ans);
+    }
+    
+   class vpair{
+       public:
+       int vl;
+       int hl;
+       TreeNode* node;
+       
+       vpair(int hl,int level,TreeNode* nod)
+       {
+          this->hl=hl;
+           vl=level;
+           node=nod;
+       }
+   };
+    
+    class comp{
+        public:
+        bool operator()(vpair &el1, vpair &el2)
+        {
+            int hl1=el1.hl;
+            int vl1=el1.vl;
+            int val1=el1.node->val;
+            
+            int hl2=el2.hl;
+            int vl2=el2.vl;
+            int val2=el2.node->val;
+            
+            if(hl1==hl2)
+            {
+                if(vl1==vl2)
+                {
+                    return val1>val2;
+                }
+                else
+                    return vl1>vl2;
+            }
+            else
+                return hl1>hl2;
+            
+        }
+    };
+    
+    vector<vector<int>> vertical(TreeNode* root)
+    {
+        vector<int>ans(2,0);
+        width(root,0,ans);
+        vector<vector<int>>res(ans[1]-ans[0]+1);
+        
+        priority_queue<vpair,vector<vpair>,comp>que;
+      
+        que.push(vpair(0,abs(ans[0]),root));
+        
+        while(que.size()!=0)
+        {
+          int size= que.size();
+            
+            while(size-->0)
+            {
+                auto rn=que.top();que.pop();
+                auto rnvl=rn.vl;
+                auto rnn=rn.node;
+                auto rnhl=rn.hl;
+                
+                res[rnvl].push_back(rnn->val);
+                
+                 if(rnn->left!=nullptr)
+                    que.push(vpair(rnhl+1,rnvl-1,rnn->left));
+                
+                  if(rnn->right!=nullptr)
+                    que.push(vpair(rnhl+1,rnvl+1,rnn->right));
+                
+               
+                              
+        
+            }
+         
+        }
+ return res;
+        
+    }
