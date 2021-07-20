@@ -222,7 +222,73 @@ possible try to impliment those two case then u will be done
             
         }
         return flag;
+==============================================================
+99. Recover Binary Search Tree
+       TreeNode* rightmost(TreeNode* left,TreeNode* curr)
+    {
+        while(left->right!=nullptr&&left->right!=curr)
+        {
+            left=left->right;
+        }
+        return left;
+    }
+void fun(TreeNode* root)
+  {
+      TreeNode* firsterror=nullptr;
+      TreeNode* seconderror=nullptr;
+    
+      
+      TreeNode* pre=new TreeNode(INT_MIN);
+     
+      TreeNode *curr=root;
+    
+        while(curr!=nullptr)
+            {
+                auto left=curr->left;
+               
+                if(left==nullptr)
+                {   
+                     if(pre->val>curr->val)
+                     {
+                         if(firsterror==nullptr)
+                             firsterror=pre;
+                         seconderror=curr;
+                     }
+                    pre=curr;
+                    curr=curr->right;
+                }
+                else
+                {
+                    auto rmn=rightmost(left,curr);
+                    if(rmn->right==nullptr)
+                    { rmn->right=curr;
+                      curr=curr->left;
+                    }
+                    else
+                    {
+                       if(pre->val>curr->val)
+                        {
+                         if(firsterror==nullptr)
+                             firsterror=pre;
+                         seconderror=curr;
+                        }
+                     
+                        pre= curr;
+                        rmn->right=nullptr;
+                        curr=curr->right;                      
+                    }
+
+                }
+            }
+    int t=firsterror->val;
+    firsterror->val=seconderror->val;
+    seconderror->val=t;
         
+    }
+    void recoverTree(TreeNode* root) {
+       
+ fun(root);
+
 ==============================================================
 ->Binary Tree to DLL
 only three lines need to add , think what that could be
