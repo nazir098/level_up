@@ -18,6 +18,21 @@ intution behind solution
                   if all numbers are positive, this is fine
                   if there exists negative number, there could be preSum frequency > 1
         */
+	
+//use of deque in sliding window
+IN front of deque either it will be maximum or minimum it means if we have sliding window of 3 to iska mtlb un 3 m se 
+jo bhi maximum element hoga wo hmare deque k front m hi hoga.
+	kaise???
+
+	maan lo ek arr h 2,1,3
+	ei=0:    INSIDE DEQ:2
+        ei=1:    INSIDE DEQ:2 1
+        ei=2:    INSIDE DEQ:3
+	
+	to jha 'ei' h usk phle ar usko mila k jo bhi maximum ele h wo hmesha deque k front m rhega 	
+	
+	
+	
 767. Reorganize String
 using two prioeity queues of their frequency
 
