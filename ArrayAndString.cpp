@@ -9,7 +9,13 @@ category in sliding window
 2. prefixSum wala case jb hm target - psum ka frequency dekhte h
 3. jb exactly k no. of (odd,even, vowel, 1,0,distinct) subarray count krna hota h	
 */	
-
+ 
+3rd category can be solved using
+// 1.aprroach using hashmap prefix sum
+// 2.using sliding window , for exact k distinct
+// 3.atmost(arr,goal)-atmost(arr,goal-1)
+	
+	
 560. Subarray Sum Equals K
 intution behind solution
   // Sliding window -- No, contains negative number
@@ -544,6 +550,16 @@ int totalFruit(vector<int>& tree)
 ///////////////////////////////////////////////////////////////////////
 // why we cant find directly k distinct element ??why atmost(K)-atmost(k-1)??
 //we know that n no. will have n(n+1)/2 substring but there is condition applied that you can select only k distinct/exact  elements
+                   /*To understand this, note that any substring needs two parameters: start index and end index.
+For example: string str = "Hello World"; // length == 11
+Lets begin by taking only one-character substring at time: H, e, l, l, o, , W, o, r, l, d. Then by taking 2 characters at time: He, el, ll, lo, o , W, Wo, or, rl, ld.
+Then by taking 3 chars: Hel, .. etc.
+So the total substring count is 11 + 10 + 9 + .. + 1 and, in general, for i from 1 to n, we have n - i + 1 substrings. By summition:
+Sigma (n + 1 - i) from i = 1 to n, yields n * (n + 1) - n * (n + 1) / 2 which is n * (n + 1) / 2
+
+11 size k string me 2 size k substring (11+1-2)=9 honge.
+
+                 */
 //For getting soln we can make a window which have only k distinct/exact elements 
 //how you are adding the count is subjected to the condition in given question
 
@@ -658,7 +674,7 @@ int numberOfSubarrays(vector<int>& nums, int k) {
 	fre[0]=1;
 	while(ei<n)
 	{
-		 sum=sum+arr[ei++];
+	     sum=sum+arr[ei++];
             ans+=fre[sum-goal];
             fre[sum]++;
 	}
