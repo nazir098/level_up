@@ -3,6 +3,13 @@
 a[]= 3 5 1 6 7 4; k=2-> k can be negative
 o/p: 1 6 7 4 3 5
  */ 
+
+category in sliding window
+/*1. Normal two pointer(atmost k distinct charachter type...)
+2. prefixSum wala case jb hm target - psum ka frequency dekhte h
+3. jb exactly k no. of (odd,even, vowel, 1,0,distinct) subarray count krna hota h	
+*/	
+
 560. Subarray Sum Equals K
 intution behind solution
   // Sliding window -- No, contains negative number
@@ -19,8 +26,8 @@ intution behind solution
                   if there exists negative number, there could be preSum frequency > 1
         */
 	
-//use of deque in sliding window
-IN front of deque either it will be maximum or minimum it means if we have sliding window of 3 to iska mtlb un 3 m se 
+use of deque in sliding window
+/*IN front of deque either it will be maximum or minimum it means if we have sliding window of 3 to iska mtlb un 3 m se 
 jo bhi maximum element hoga wo hmare deque k front m hi hoga.
 	kaise???
 
@@ -30,9 +37,12 @@ jo bhi maximum element hoga wo hmare deque k front m hi hoga.
         ei=2:    INSIDE DEQ:3
 	
 	to jha 'ei' h usk phle ar usko mila k jo bhi maximum ele h wo hmesha deque k front m rhega 	
-	
-	
-	
+*/
+
+
+
+
+
 767. Reorganize String
 using two prioeity queues of their frequency
 
