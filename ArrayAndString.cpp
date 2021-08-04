@@ -4,6 +4,8 @@ a[]= 3 5 1 6 7 4; k=2-> k can be negative
 o/p: 1 6 7 4 3 5
  */ 
 
+11 size k string me 2 size k substring (11+1-2)=9 honge
+
 category in sliding window
 /*1. Normal two pointer(atmost k distinct charachter type...)
 2. prefixSum wala case jb hm target - psum ka frequency dekhte h
