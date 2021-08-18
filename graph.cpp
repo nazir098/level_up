@@ -28,8 +28,31 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
            length h. nhi to cycle odd length ka h.
    
            
-           
-                          
+ directed graph(one ended -> ):
+     topological sort sirf directed graph m hi use kr skte h ya fir asa bol skte h k
+     hm jb kisi dependencies ko graphically repersent krte h to kis order excute kr skte h
+     wo topological sort se pta chalta h.
+     
+  # topological order kaise nikalte h:
+        simple dfs se topological order nikal skte h bs last m element ko store kr lo
+        lkn dikkat ye h ki ye bta nhi pata k jo order aya h wo valid k nhi i mean graph
+        m cycle present h to uska topological order nikal nhi skte. pr dfs to nikal dega 
+        fir verify krte rho.
+   ->iska soln h kahns algo   
+  # kahns algo:      
+               indigree(mere pe kitne depend kr rhe h) ka concept h. isme bfs indigre k base pe lgaenge
+               ar hmesha ye dekhenge k agr mere pe ek bnda depend h to m next succesor bn skta hu to use 
+               queue k andr daal do.
+                  
+               que ka har "L" level ye bolta h k hm sb apna kaam "Lth" number se start kr skte h kuki hmari dependencies 
+               khtm ho gyi h
+               
+              result analysis: 
+              jb jb que se nikal rhe to use tmne vector m daala h as your ans. tmhra ans correct h i mean tumhare schedule 
+              graph m koi cycle nhi h to ans m sare numbers present honnge 1-N.
+              agr scheduling possible nhi h to hmara kahns algo bich m ruk gya hoga ar ans wale vector m kchh element 
+              km honge. to ye pta chal jayega k cycle h
+                 
 
 
 
