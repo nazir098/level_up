@@ -51,7 +51,14 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
               jb jb que se nikal rhe to use tmne vector m daala h as your ans. tmhra ans correct h i mean tumhare schedule 
               graph m koi cycle nhi h to ans m sare numbers present honnge 1-N.
               agr scheduling possible nhi h to hmara kahns algo bich m ruk gya hoga ar ans wale vector m kchh element 
-              km honge. to ye pta chal jayega k cycle h
+              km honge. to ye pta chal jayega k cycle h.
+                 
+# directed graph m cycle detect krna(khans algo wala kaam dfs se kase krna h):
+             ye chij to bfs se easily ho rha h jsa upar likha h pr kya hm dfs se ye chij bta skte h?
+             ha dfs se bta skte h k hmara sheduled graph m koi cycle h ya nhi bs thoda sa modification kr k "topological order by dfs"
+             kon kon se element ek time pr excute kre ja skte h isko pta lgane k lie last m store kra lo recursion k.
+                 
+# Union find in graphs:                 
                  
 
 
