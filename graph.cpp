@@ -56,9 +56,17 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
 # directed graph m cycle detect krna(khans algo wala kaam dfs se kase krna h):
              ye chij to bfs se easily ho rha h jsa upar likha h pr kya hm dfs se ye chij bta skte h?
              ha dfs se bta skte h k hmara sheduled graph m koi cycle h ya nhi bs thoda sa modification kr k "topological order by dfs"
-             kon kon se element ek time pr excute kre ja skte h isko pta lgane k lie last m store kra lo recursion k.
+             kon kon se element ek time pr excute kre ja skte h isko pta lgane k lie last m store kra lo recursion k basically post order m.
+             dfs se agr pta lagana h k cycles exist krti h ya nhi to bs return type m thodi changes krni pd jayegi 0,1,2 state ho jayega fir 
+             hm find kr skte h
                  
-# Union find in graphs:                 
+# Union find in graphs: jo graph dia hua h wo sb connected rhe (kisi condition m like km se km weight ho) ar unk bich m cycle na ho basically 
+            spanning tree use hm union find method se solve krte h
+            2nd interpertation: ek grp of number m se m koi bhi number select kru mjhe ek hi number mile ar wo number un sb m se special hongi
+# minimum spanning tree:
+            m agr sort kr du edges ko ar union find lgauo to sbse jyada weight wala edge sbse last m ayega ar ye possible h k wo cycle bna rha ho is
+            case m wo add nhi hoga so resulting graph bnne wala h wo hmara minimum spanning tree hoga.
+            
                  
 
 
