@@ -67,8 +67,17 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
             m agr sort kr du edges ko ar union find lgauo to sbse jyada weight wala edge sbse last m ayega ar ye possible h k wo cycle bna rha ho is
             case m wo add nhi hoga so resulting graph bnne wala h wo hmara minimum spanning tree hoga.
             
-                 
-
+# dijikstra algo  (bfs cycle wla)
+                source dependent , priority queue se element weight so far k base pe nikalte h
+                
+               
+# kruskal algo : (union find sorted order m)
+                 graph bnane ki jrrt nhi
+                 ek mst jisme 
+              
+# prims algo : 
+              graph bnane ki jrrt h
+              ek mst
 
 
 
