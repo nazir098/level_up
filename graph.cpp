@@ -69,17 +69,19 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
             
 # dijikstra algo  (bfs cycle wla)
                 source dependent , priority queue se element weight so far k base pe nikalte h
+                ek better solution impliment krne ka ye h k distance/weight array ko koi beat kr rha'
+                hoga tbhi usko que m dalenge.
                 
                
 # kruskal algo : (union find sorted order m)
                  graph bnane ki jrrt nhi
-                 ek mst jisme 
+                 ek mst jisme heavy wala edge removed hota h
               
-# prims algo : 
+# prims algo : (bfs)
               graph bnane ki jrrt h
-              ek mst
+              ek mst isme priority que use hota h
 
-
+prims and kruskal dono mst bnate h.prims dense graph k andr achha perform krta h kruskal sparsh graph k andr achha perform krta h
 
 
 
