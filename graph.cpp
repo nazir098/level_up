@@ -68,9 +68,12 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
             case m wo add nhi hoga so resulting graph bnne wala h wo hmara minimum spanning tree hoga.
             
 # dijikstra algo  (bfs cycle wla)
-                source dependent , priority queue se element weight so far k base pe nikalte h
-                ek better solution impliment krne ka ye h k distance/weight array ko koi beat kr rha'
-                hoga tbhi usko que m dalenge.
+                priority queue se element weight so far k base pe nikalte h
+                dijikstra ar mst m diff? 
+                mst m heavisest weight wala edge nhi hota pr dijikstra source dependent h mtlb m jha se start kr rha hu us jgh se khada ho k dekhta hu 
+                graph m jitne bhi node h sb connected honge ar path untk phuchne ka min hoga.
+ 
+               negative cycle k liye kaam nhi krta
                 
                
 # kruskal algo : (union find sorted order m)
@@ -79,9 +82,10 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
               
 # prims algo : (bfs)
               graph bnane ki jrrt h
-              ek mst isme priority que use hota h
+              ek mst isme priority que use hota h bilkul dijkstra jase
 
 prims and kruskal dono mst bnate h.prims dense graph k andr achha perform krta h kruskal sparsh graph k andr achha perform krta h
+prims kruskal interchangebly use kr skte h.
 
 
 
