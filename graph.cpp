@@ -87,9 +87,32 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
 prims and kruskal dono mst bnate h.prims dense graph k andr achha perform krta h kruskal sparsh graph k andr achha perform krta h
 prims kruskal interchangebly use kr skte h.
 
+               
+#articulation point: isme dfs lgana hota h ar hrek node ko time stamp dena hota h k kb discover hua ar us node ki reach kha tk h
+               do blocks h ek jb node visted nhii h
+            { 
+              dfs call krna h
+                    dfs ek point pe end hoga jb aage wala node visited h ya fir uska koi child nhi h
+                    agr dfs khtm hua visited node k wjh se to iska mtlb h k visited wala node ka time stamp km hoga ar uska reach bhi powerful(low value) hoga
+                    agr wo node ka contact powerfull node se h ar mera contact isi se ho to m bhi powerful ko reach kr skta hu to mne apna reach update kr lia
+              low[src]=min(low[src],low[vt])
+              
+                    waps aate hue m ye dekh rha hu k jo mere vertices h unka reach mjh se ho k ho k gujarta h mtlb m agr discover 4 pe hua ar child ka reach 5 h
+                    mtlb koi ar rasta nhi h jisse mere child k pas jaya ja sake to wo mere upar dependent h isliye m apne child k respect m articulation point hu
+              if(disc[src]<=low[vt])
+              articulationpnt++
+              
+            }
+dusra jb node visited h
+{
+                     ye wo case h jisme mera child visited hoga usko low stamp mila hoga to is case m is chij ki gurantee le skta hu k source wale ki reach atleast wha tk to h jb
+                     uska child discover hua tha is case m hme disc[timestapmp] se uske low ko update krna hoga.
+                     
+      low[sr]=min(low[src],disc[vt])               
+}
 
-
-
+source node ko explictly treat krna pdega abhi tk algo se ye pta chalta h k jitne bhi articulation kisi ek point pr h agr usko hta du to usse ek jyada number of components 
+bnenge lkn ye chij source node k liye shi nhi h
 
 
 
