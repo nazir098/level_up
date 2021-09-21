@@ -589,7 +589,7 @@ int CntExactKDistinct(vector<int>&s, int k)
 			dropped=0;
 	         }
 		
-                  while(fre[s[si]]>1)
+                  while(fre[s[si]]>1) //agr koi asa case ata h jisme fre[si] repeat na kr rha ho to is case m ans m +1 jud rha hota h hmesh.
 		{
 		    fre[s[si++]]--;
 		    dropped++;
