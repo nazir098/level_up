@@ -2,6 +2,8 @@
    -->using cycle wala bfs : when we pop queue let 'a' another element 'a' at the same level then it is forming cycle, isse bipartite bhi nikal skte h
       basically m issme intrested hu k mere level pe aane wale log sare unvisited h ya nhi
       -->isme queue se nikalne k baad true mark krte h
+      
+      -->yha pe cycle ka mtlb connected h ye nhi k jha se start kia whi pe phuch jayenge.
    
 # normally bfs m queue m dalne se phle mark krte h (iski space complexity acchi hoti h)
    basically isme bs m sare unvisited to traverse krna chahta hu
