@@ -116,7 +116,9 @@ dusra jb node visited h
 source node ko explictly treat krna pdega abhi tk algo se ye pta chalta h k jitne bhi articulation kisi ek point pr h agr usko hta du to usse ek jyada number of components 
 bnenge lkn ye chij source node k liye shi nhi h
 
-
+//924. Minimize Malware Spread
+phle iska node wala graph bnao fir sbka population ar no. of infected in that population nikalo;
+population isliye qk question ne higher population bchane ko bola h ar infected is liye q k agr ek se jyada infected h to use bcha nhi skte
 
 
 
