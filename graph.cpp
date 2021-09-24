@@ -3,7 +3,7 @@
       basically m issme intrested hu k mere level pe aane wale log sare unvisited h ya nhi
       -->isme queue se nikalne k baad true mark krte h
       
-      -->yha pe cycle ka mtlb connected h ye nhi k jha se start kia whi pe phuch jayenge.
+      -->ye sirf undirected graph k lie bola h baki directed graph k liye hm kahn's algo ar dfs use krte h.
    
 # normally bfs m queue m dalne se phle mark krte h (iski space complexity acchi hoti h)
    basically isme bs m sare unvisited to traverse krna chahta hu
@@ -41,7 +41,7 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
         m cycle present h to uska topological order nikal nhi skte. pr dfs to nikal dega 
         fir verify krte rho.
    ->iska soln h kahns algo   
-  # kahns algo:      
+  # kahns algo:  (for directed graph)    
                indigree(mere pe kitne depend kr rhe h) ka concept h. isme bfs indigre k base pe lgaenge
                ar hmesha ye dekhenge k agr mere pe ek bnda depend h to m next succesor bn skta hu to use 
                queue k andr daal do.
