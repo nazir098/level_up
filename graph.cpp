@@ -80,8 +80,12 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
    
 # Bellman Ford algo (dijkstra wala kaam,pr negative m bhi use kr skte h)
                 dynamic approch follow krte h
-                hme edges ko relax krna h mtlb check kro k wf + w[currNod]
+                ek prev arr bnao jo prev state store kr k rkhta h ,initially sbko inf set kr do
+                hr bar ek curr arr m copy kro ar usme nod ko relax kro    
+                hme edges ko relax krna h mtlb check kro k if( wsf + w[currNod] < w[nxtNod]) to update kr do
+                agr relax kisi instant pe nhi hota ek bhi node to mtlb abhi jo hmare curr array m h whi best possible ans h
                 agr graph m asa koi loop jiska sum negative h to is case m ye  kaam nhi krta pr bta jrr dega k mera o/p valid nhi h
+                no. of edges n-1 ,agr hm n bar iterate krte h ar koi node update ho rha h mtlb ek negative loop ka cycle present h ar iska ans nikalna possible nhi h
                 
 # kruskal algo : (union find sorted order m)
                  graph bnane ki jrrt nhi
