@@ -1,3 +1,5 @@
+# go to the leetcode question of that algorithm for detail of any algorithm. 
+
 # cycle detection:
    -->using cycle wala bfs : when we pop queue let 'a' another element 'a' at the same level then it is forming cycle, isse bipartite bhi nikal skte h
       basically m issme intrested hu k mere level pe aane wale log sare unvisited h ya nhi
