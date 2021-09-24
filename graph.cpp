@@ -79,7 +79,7 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
  
                negative cycle k liye kaam nhi krta
    
-   
+//leetcode 787   
 # Bellman Ford algo (dijkstra wala kaam,pr negative m bhi use kr skte h)
                 dynamic approch follow krte h
                 ek prev arr bnao jo prev state store kr k rkhta h ,initially sbko inf set kr do
@@ -100,6 +100,9 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
 prims and kruskal dono mst bnate h.prims dense graph k andr achha perform krta h kruskal sparsh graph k andr achha perform krta h
 prims kruskal interchangebly use kr skte h.
 
+                   
+In a graph, a vertex is called an articulation point if removing it and all the edges associated with it results in the increase 
+of the number of connected components in the graph.                   
                
 #articulation point: isme dfs lgana hota h ar hrek node ko time stamp dena hota h k kb discover hua ar us node ki reach kha tk h
                do blocks h ek jb node visted nhii h
