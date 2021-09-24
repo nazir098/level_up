@@ -76,8 +76,13 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
                 graph m jitne bhi node h sb connected honge ar path untk phuchne ka min hoga.
  
                negative cycle k liye kaam nhi krta
+   
+   
+# Bellman Ford algo (dijkstra wala kaam,pr negative m bhi use kr skte h)
+                dynamic approch follow krte h
+                hme edges ko relax krna h mtlb check kro k wf + w[currNod]
+                agr graph m asa koi loop jiska sum negative h to is case m ye  kaam nhi krta pr bta jrr dega k mera o/p valid nhi h
                 
-               
 # kruskal algo : (union find sorted order m)
                  graph bnane ki jrrt nhi
                  ek mst jisme heavy wala edge removed hota h
