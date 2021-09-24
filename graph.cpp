@@ -122,8 +122,13 @@ dusra jb node visited h
       low[sr]=min(low[src],disc[vt])               
 }
 
-source node ko explictly treat krna pdega abhi tk algo se ye pta chalta h k jitne bhi articulation kisi ek point pr h agr usko hta du to usse ek jyada number of components 
-bnenge lkn ye chij source node k liye shi nhi h
+#      source node ko explictly treat krna pdega abhi tk algo se ye pta chalta h k jitne bhi articulation kisi ek point pr h agr usko hta du to usse ek jyada number of components 
+       bnenge lkn ye chij source node k liye shi nhi h
+       
+#      sort(arr.begin(), arr.end(), [](vector<int> &a, vector<int> &b)
+         { return a[2] < b[2]; });
+   
+
 
 //924. Minimize Malware Spread
 phle iska node wala graph bnao fir sbka population ar no. of infected in that population nikalo;
