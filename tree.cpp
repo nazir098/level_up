@@ -558,7 +558,8 @@ use of priority queue
             
         }
     };
-    
+    //hl: horizontal level
+    //vl: vertical level
     vector<vector<int>> vertical(TreeNode* root)
     {
         vector<int>ans(2,0);
