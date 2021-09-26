@@ -598,3 +598,25 @@ use of priority queue
  return res;
         
     }
+    ===============================================================================
+    AVL tree:
+    taki hmara search bst m log(n) rhe
+    
+    4 structure are possible:
+    LL(2) : right rotate kr k node dedo
+    LR(1):  ek bar left rotate kr k right rotate kr do
+    RR(-2), RL(-1): same goes here
+    
+    height: in terms of edges
+    balance: leftHeight - RightHeight
+    
+    3 Node consider krenge baki k hm subtree ko triangle man k 4 possible structure bnak dry run krenge.
+    
+    sbse phle ek class bnayenge fir usme {data, left, right, height ar balanced bhi rkhenge}
+    3 function bnayenge:
+      1: update height&balance //return void
+      2: leftRotate            //return Node
+      3: RightRotate           //return Node
+    
+    
+    
