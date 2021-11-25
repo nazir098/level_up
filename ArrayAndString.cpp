@@ -571,7 +571,7 @@ Sigma (n + 1 - i) from i = 1 to n, yields n * (n + 1) - n * (n + 1) / 2 which is
 //eg : 1 1  2 1
             ^ ^this is our window then CntofDrop=2 => CntofDrop + 1(window itself)
 //this CntofDrop will only reset when there is break in string means Nodistinct>k
-// ye thoda less comprenhisble h isk niche wala solution easy h is type k question k lie
+
 int CntExactKDistinct(vector<int>&s, int k)
 {
 	int ei=0, si=0, cnt=0, n=s.size(),dropped=0,ans=0;
