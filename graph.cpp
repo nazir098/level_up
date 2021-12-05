@@ -36,7 +36,13 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
      topological sort sirf directed graph m hi use kr skte h ya fir asa bol skte h k
      hm jb kisi dependencies ko graphically repersent krte h to kis order excute kr skte h
      wo topological sort se pta chalta h.
-     
+        
+ # hameltonian cycle: 
+        ek source se start kr k m sare node ko visit kr leta hu kisi node ko do baar visit nhi krta to 
+        jo last wala node h agr us se koi ek branch bhi source ko touch krta h to ye hemoltonian cycle h
+        ek se jyada cycle exist kr skta h.
+ # hameltonian path: 
+           us cycle ka path print kr do 
   # topological order kaise nikalte h:
         simple dfs se topological order nikal skte h bs last m element ko store kr lo
         lkn dikkat ye h ki ye bta nhi pata k jo order aya h wo valid k nhi i mean graph
