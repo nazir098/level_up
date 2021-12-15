@@ -102,6 +102,7 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
 # prims algo : (bfs)
               graph bnane ki jrrt h
               ek mst isme priority que use hota h bilkul dijkstra jase
+              dijkstra m weight so far (wsf) jata h jbki prims m weight hi jata h
 
 prims and kruskal dono mst bnate h.prims dense graph k andr achha perform krta h kruskal sparsh graph k andr achha perform krta h
 prims kruskal interchangebly use kr skte h.
