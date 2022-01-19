@@ -95,6 +95,8 @@ algorithm: har ek node alternate colouring do. iska mtlb hr level ek type k colo
                 agr graph m asa koi loop jiska sum negative h to is case m ye  kaam nhi krta pr bta jrr dega k mera o/p valid nhi h
                 no. of edges n-1 ,agr hm n bar iterate krte h ar koi node update ho rha h mtlb ek negative loop ka cycle present h ar iska ans nikalna possible nhi h
                 
+# bellman ford and dijikstra dono undirected graph m shortest distance k lie use hote h.            
+
 # kruskal algo : (union find sorted order m)
                  graph bnane ki jrrt nhi
                  ek mst jisme heavy wala edge removed hota h
